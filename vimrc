@@ -33,7 +33,7 @@ set softtabstop=4       " 4 spaces per 'tab' while editing
 set listchars+=tab:>-   " Make tab chars extra-obvious in list mode
 
 if has("autocmd")
-    " Enable indenting, plugins, and highlighting
+    " Enable indenting, plugins, and filetype detection
     filetype plugin indent on
 
     " Prefer smaller indenting in Markdown
@@ -53,8 +53,10 @@ endif
 if has("linebreak")
     set linebreak       " Wrap lines at word boundaries only
 endif
-if !has("gui_running")
+if has("syntax")
     syntax enable       " Enable syntax highlighting
+endif
+if !has("gui_running")
     colorscheme desert  " Better scheme for dark bg
 endif
 

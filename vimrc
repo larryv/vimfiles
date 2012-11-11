@@ -83,3 +83,6 @@ set printoptions+=paper:letter
 " ========== MISC ==========
 
 let g:netrw_sort_sequence = ''  " disable weird netrw sorting
+if filereadable(glob("~/.vimrc.local"))
+    source ~/.vimrc.local
+endif

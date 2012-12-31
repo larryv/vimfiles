@@ -83,6 +83,22 @@ set printoptions+=paper:letter
 " ========== MISC ==========
 
 let g:netrw_sort_sequence = ''  " disable weird netrw sorting
+
+" Hijack termcap to tell Terminal.app about current file (or working
+" directory, for file-less buffers); see ':h termcap-title'. If inside
+" tmux, use a special escape sequence to pass original sequence; see
+" http://sourceforge.net/mailarchive/message.php?msg_id=27190530.
+if !has("gui_running") && $TERM_PROGRAM == "Apple_Terminal" &&
+            \ has("autocmd") && has("title")
+    let &t_ts = exists("$TMUX") ? "\33Ptmux;\33\33]7;" : "\33]7;"
+    let &t_fs = exists("$TMUX") ? "\7\33\\" : "\7"
+    autocmd BufEnter ?* let &titlestring = "file://" . hostname() .
+                \ expand('%:p:gs/ /%20/')
+    autocmd BufEnter {} let &titlestring = "file://" . hostname() .
+                \ substitute(getcwd(), " ", "%20", "g")
+    set title
+endif
+
 if filereadable(glob("~/.vimrc.local"))
     source ~/.vimrc.local
 endif

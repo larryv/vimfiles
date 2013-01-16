@@ -83,6 +83,8 @@ set printoptions+=paper:letter
 " ========== MISC ==========
 
 let g:netrw_sort_sequence = ''  " disable weird netrw sorting
+let g:loaded_netrw = 1          " disable netrw entirely until I can
+let g:loaded_netrwPlugin = 1    "       fix the broken mappings
 if filereadable(glob("~/.vimrc.local"))
     source ~/.vimrc.local
 endif

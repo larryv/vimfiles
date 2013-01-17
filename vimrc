@@ -1,7 +1,6 @@
 " ========== GENERAL ==========
 
 set nocompatible        " Does anyone really want vi compatibility?
-set modeline
 set modelines&          " Override /usr/share/vim/vimrc on OS X
 if has("multi_byte")
     set encoding=utf-8
@@ -38,9 +37,6 @@ if has("autocmd")
 
     " Prefer smaller indenting in Markdown
     autocmd FileType markdown set shiftwidth=2 softtabstop=2
-
-    " Override modelines in MacPorts portfiles
-    autocmd BufWinEnter Portfile set filetype=portfile
 endif
 
 " ========== DISPLAY ==========

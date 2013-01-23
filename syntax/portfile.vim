@@ -30,20 +30,20 @@ syn match PortfileGroup         "{.\+}" contained
 syn match PortfileYesNo         "\(yes\|no\)" contained
 
 syn keyword PortfileRequired    PortSystem name version maintainers
-syn keyword PortfileRequired    homepage master_sites categories platforms
+syn keyword PortfileRequired    homepage master_sites platforms
+syn match PortfileRequired      "^categories\%(-\%(append\|delete\)\)\?"
 syn match PortfileRequired      "^\(long_\)\?description" nextgroup=PortfileDescription skipwhite
 syn region PortfileDescription  matchgroup=Normal start="" skip="\\$" end="$" contained
 
 syn keyword PortfileOptional    PortGroup epoch revision worksrcdir distname
-syn keyword PortfileOptional    use_automake use_autoconf use_configure
 syn keyword PortfileOptional    patch_sites distfiles dist_subdir license conflicts
 syn keyword PortfileOptional    replaced_by supported_archs
 
-syn match  PortfileOptional     "checksums\(\-\(append\|delete\)\)\?" nextgroup=PortfileChecksums skipwhite
+syn match  PortfileOptional     "checksums\(-\(append\|delete\)\)\?" nextgroup=PortfileChecksums skipwhite
 syn region PortfileChecksums    matchgroup=Normal start="" skip="\\$" end="$" contained contains=PortfileChecksumsType
 syn keyword PortfileChecksumsType md5 sha1 rmd160 sha256 contained
 
-syn match PortfilePhases        "\(\(pre\|post\)\-\)\?\(fetch\|checksum\|extract\|patch\|configure\|build\|test\|destroot\|archive\|install\|activate\)\s" contains=PortfilePrePost
+syn match PortfilePhases        "\(\(pre\|post\)-\)\?\(fetch\|checksum\|extract\|patch\|configure\|build\|test\|destroot\|archive\|install\|activate\)\s" contains=PortfilePrePost
 
 " Fetch phase options
 syn match PortfilePhasesFetch   "fetch\.\(type\|user\|password\|use_epsv\|ignore_sslcert\)"
@@ -53,17 +53,17 @@ syn match PortfilePhasesFetch   "git\.\(url\|branch\)"
 syn match PortfilePhasesFetch   "hg\.\(url\|tag\)"
 
 " Extract phase options
-syn match PortfilePhasesExtract "extract\.\(suffix\|mkdir\|cmd\|only\(\-\(append\|delete\)\)\?\)"
+syn match PortfilePhasesExtract "extract\.\(suffix\|mkdir\|cmd\|only\(-\(append\|delete\)\)\?\)"
 syn match PortfilePhasesExtract "use_\(7z\|bzip2\|lzma\|zip\|xz\)" nextgroup=PortfileYesNo skipwhite
 
 " Patch phase options
-syn match PortfilePhasesPatch   "patch\.\(dir\|cmd\|args\(\-\(append\|delete\)\)\?\)"
-syn match PortfilePhasesPatch   "patchfiles\(\-\(append\|delete\)\)\?"
+syn match PortfilePhasesPatch   "patch\.\(dir\|cmd\|args\(-\(append\|delete\)\)\?\)"
+syn match PortfilePhasesPatch   "patchfiles\(-\(append\|delete\)\)\?"
 
 " Configure phase options
 syn keyword PortfilePhasesConf  use_configure nextgroup=PortfileYesNo skipwhite
 syn match PortfilePhasesConf    "configure\.\(env\|\(c\|ld\|cpp\|cxx\|objc\|f\|fc\|f90\)flags\)\(-\(append\|delete\)\)\?"
-syn match PortfilePhasesConf    "configure\.\(\(pre\|post\)\-\)\?args\(-\(\append\|delete\)\)\?" nextgroup=PortfileConfEntries skipwhite
+syn match PortfilePhasesConf    "configure\.\(\(pre\|post\)-\)\?args\(-\(\append\|delete\)\)\?" nextgroup=PortfileConfEntries skipwhite
 syn region PortfileConfEntries  matchgroup=Normal start="" skip="\\$" end="$" contained
 syn match PortfilePhasesConf    "configure\.\(cc\|cpp\|cxx\|objc\|fc\|f77\|f90\|javac\|compiler\)"
 syn match PortfilePhasesConf    "configure\.\(perl\|python\|ruby\|install\|awk\|bison\)"
@@ -98,7 +98,7 @@ syn keyword PortfileVariantDescription  description nextgroup=PortfileGroup cont
 syn match PortfileVariantName           "[a-zA-Z0-9_]\+" contained
 syn keyword PortfileOptional            universal_variant nextgroup=PortfileYesNo skipwhite
 syn match PortfileOptional              "default_variants\(-\(append\|delete\)\)\?" nextgroup=PortfileDefaultVariants skipwhite
-syn match PortfileDefaultVariants       "\([+|\-][a-zA-Z0-9_]\+\s*\)\+" contained
+syn match PortfileDefaultVariants       "\([+\-][a-zA-Z0-9_]\+\s*\)\+" contained
 
 " Platform
 syn match PortfilePlatform          "platform" nextgroup=PortfilePlatformName skipwhite
@@ -113,7 +113,7 @@ syn match PortfileDependsEntry      "\(port\|bin\|path\|lib\):" contained
 
 " StartupItems
 syn match PortfileStartupPid    "\(none\|auto\|clean\|manual\)" contained
-syn match PortfileOptional      "startupitem\.\(start\|stop\|restart\|init\|executable\)"
+syn match PortfileOptional      "startupitem\.\(start\|stop\|restart\|init\|executable\|logfile\)"
 syn match PortfileOptional      "startupitem\.\(create\|logevents\|netchange\)" nextgroup=PortfileYesNo skipwhite
 syn match PortfileOptional      "startupitem\.pidfile" nextgroup=PortfileStartupPid skipwhite
 
@@ -235,9 +235,17 @@ syn match PortfileGroups    "zope\.\(need_subdir\|setup\)"
 
 
 " Tcl extensions
-syn keyword PortfileTcl     xinstall system copy move ln
-syn keyword PortfileTcl     fs-traverse
-syn keyword PortfileTcl     vercmp
+syn keyword PortfileTcl     xinstall fs-traverse readdir md5 vercmp
+syn keyword PortfileTcl     reinplace strsed
+syn keyword PortfileTcl     copy move delete touch ln system
+syn match PortfileTcl       "curl\s\+\%(fetch\|isnewer\)"
+syn match PortfileTcl       "\%(add\|exists\)\%(user\|group\)"
+syn keyword PortfileTcl     nextuid nextgid
+syn keyword PortfileTcl     variant_isset variant_set
+syn match PortfileTcl       "mk[sd]\?temp"
+syn keyword PortfileTcl     lpush lpop lunshift lshift ldindex
+syn keyword PortfileTcl     ui_debug ui_error ui_info ui_msg ui_warn
+
 " check whitespace, copied from python.vim
 if g:portfile_highlight_space_errors == 1
     " trailing whitespace

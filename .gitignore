@@ -1,2 +1,5 @@
 # Vim netrw junk
 .netrw*
+
+# Plugins
+bundle/

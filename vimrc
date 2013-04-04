@@ -1,6 +1,5 @@
 " ========== GENERAL ==========
 
-set nocompatible        " Does anyone really want vi compatibility?
 set modelines&          " Override /usr/share/vim/vimrc on OS X
 if has("multi_byte")
     set encoding=utf-8

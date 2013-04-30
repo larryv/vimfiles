@@ -1,3 +1,10 @@
+" ========== PATHOGEN.VIM ==========
+
+runtime bundle/vim-pathogen/autoload/pathogen.vim
+if exists("*pathogen#infect")
+    execute pathogen#infect()
+endif
+
 " ========== GENERAL ==========
 
 set modelines&          " Override /usr/share/vim/vimrc on OS X

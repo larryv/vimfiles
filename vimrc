@@ -32,7 +32,9 @@ set formatoptions+=r    " Insert comment leaders on <Enter> in Insert mode
 set formatoptions+=q    " Allow formatting with 'gq'
 set formatoptions+=l    " Don't break already-long lines in Insert mode
 set formatoptions+=1    " Don't break after 1-letter words
-set formatoptions+=j    " Remove comment leaders when joining
+if v:version > 703 || v:version == 703 && has("patch541")
+    set formatoptions+=j    " Remove comment leaders when joining
+endif
 
 set expandtab           " Use spaces for indents
 set shiftwidth=4        " 4 spaces per 'tab' for indenting

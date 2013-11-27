@@ -39,7 +39,8 @@ endif
 set expandtab           " Use spaces for indents
 set shiftwidth=4        " 4 spaces per 'tab' for indenting
 set softtabstop=4       " 4 spaces per 'tab' while editing
-set listchars+=tab:>-   " Make tab chars extra-obvious in list mode
+set listchars+=tab:>-   " Set appearance of tabs in list mode
+set listchars+=trail:~  " Set appearance of trailing spaces in list mode
 
 if has("autocmd")
     " Enable indenting, plugins, and filetype detection

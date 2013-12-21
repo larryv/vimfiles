@@ -52,19 +52,19 @@ endif
 
 " ========== DISPLAY ==========
 
-set number              " Show line numbers
+set number                  " Show line numbers
 if has("cmdline_info")
-    set ruler           " Show ruler
-    set showcmd         " Show partial commands in ruler
+    set ruler               " Show ruler
+    set showcmd             " Show partial commands in ruler
 endif
 if has("linebreak")
-    set linebreak       " Wrap lines at word boundaries only
+    set linebreak           " Wrap lines at word boundaries only
 endif
 if has("syntax")
-    syntax enable       " Enable syntax highlighting
+    syntax enable           " Enable syntax highlighting
 endif
 if !has("gui_running")
-    colorscheme desert  " Better scheme for dark bg
+    colorscheme desert      " Decent alternative for dark bg
 endif
 
 " ========== SEARCHING ==========

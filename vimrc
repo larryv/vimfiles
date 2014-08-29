@@ -63,9 +63,6 @@ endif
 if has("syntax")
     syntax enable           " Enable syntax highlighting
 endif
-if !has("gui_running")
-    set background=dark     " Don't trust background detection
-endif
 if !empty(split(globpath(&runtimepath, "colors/solarized.vim"), "\n"))
     colorscheme solarized   " http://ethanschoonover.com/solarized
 elseif !has("gui_running")

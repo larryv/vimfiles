@@ -38,7 +38,11 @@ endif
 
 set expandtab           " Use spaces for indents
 set shiftwidth=4        " 4 spaces per 'tab' for indenting
-set softtabstop=4       " 4 spaces per 'tab' while editing
+if v:version > 703 || v:version == 703 && has("patch693")
+    set softtabstop=-1  " [shiftwidth] spaces per <Tab>
+else
+    set softtabstop=4   " 4 spaces per <Tab>
+endif
 set listchars+=tab:>-   " Set appearance of tabs in list mode
 set listchars+=trail:~  " Set appearance of trailing spaces in list mode
 

@@ -29,6 +29,7 @@ set nojoinspaces        " One space between sentences when joining
 set formatoptions+=t    " Auto-wrap text
 set formatoptions+=c    " Auto-wrap comments
 set formatoptions+=r    " Insert comment leaders on <Enter> in Insert mode
+set formatoptions+=o    " Insert comment leaders on 'o'/'O' in Normal mode
 set formatoptions+=q    " Allow formatting with 'gq'
 set formatoptions+=l    " Don't break long lines in Insert mode
 set formatoptions+=1    " Don't break after one-letter words

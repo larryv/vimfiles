@@ -44,9 +44,6 @@ set listchars+=trail:~  " Show trailing spaces as '~' in list mode
 if has("autocmd")
     " Enable indenting, plugins, and filetype detection
     filetype plugin indent on
-
-    " Prefer smaller indenting in Markdown
-    autocmd FileType markdown set shiftwidth=2 softtabstop=2
 endif
 
 " ========== DISPLAY ==========

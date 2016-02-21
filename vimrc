@@ -45,13 +45,9 @@ endif
 " ========== DISPLAY ==========
 
 set number                  " Show line numbers
-if has("cmdline_info")
     set ruler               " Show ruler
     set showcmd             " Show partial commands in ruler
-endif
-if has("linebreak")
     set linebreak           " Wrap lines at word boundaries only
-endif
 if has("syntax")
     syntax enable           " Enable syntax highlighting
 endif
@@ -64,10 +60,8 @@ endif
 
 " ========== SEARCHING ==========
 
-if has("extra_search")
     set hlsearch        " Highlight matches
     set incsearch       " Incremental search
-endif
 
 " ========== PRINTING ==========
 

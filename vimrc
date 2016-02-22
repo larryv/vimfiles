@@ -13,9 +13,7 @@ if has("autocmd")
 endif
 
 " The most permissive backspacing possible.
-set backspace=indent
-set backspace+=eol
-set backspace+=start
+set backspace=indent,eol,start
 
 " Use four spaces for indenting and <Tab>bing.
 set expandtab
@@ -27,13 +25,11 @@ else
 endif
 
 " Insert comment leaders (e.g., '#' or '//') automatically.
-set formatoptions+=o
-set formatoptions+=r
+set formatoptions+=or
 
 " Break long lines, but with restrictions.
 set textwidth=72
-set formatoptions+=l
-set formatoptions+=1
+set formatoptions+=l1
 
 " Join lines with one space between sentences, removing comment leaders.
 set nojoinspaces

@@ -5,12 +5,26 @@ if exists("*pathogen#infect")
     execute pathogen#infect()
 endif
 
+
 " ---------- EDITING ----------
+
+if has("autocmd")
+    filetype plugin indent on
+endif
 
 " The most permissive backspacing possible.
 set backspace=indent
 set backspace+=eol
 set backspace+=start
+
+" Use four spaces for indenting and <Tab>bing.
+set expandtab
+set shiftwidth=4
+if v:version > 703 || v:version == 703 && has("patch693")
+    set softtabstop=-1
+else
+    set softtabstop=4
+endif
 
 " Insert comment leaders (e.g., '#' or '//') automatically.
 set formatoptions+=o
@@ -27,30 +41,13 @@ if v:version > 703 || v:version == 703 && has("patch541")
     set formatoptions+=j
 endif
 
-" Use four spaces for indenting and <Tab>bing.
-set expandtab
-set shiftwidth=4
-if v:version > 703 || v:version == 703 && has("patch693")
-    set softtabstop=-1
-else
-    set softtabstop=4
-endif
-set listchars+=tab:>-   " Show tabs as '>-------' in list mode
-set listchars+=trail:~  " Show trailing spaces as '~' in list mode
-
-if has("autocmd")
-    filetype plugin indent on
-endif
 
 " ---------- VIEWING ----------
 
-set number          " Absolute line numbers on the left.
-set ruler
-set showcmd         " Show in-progress Normal mode commands.
-set linebreak       " Wrap lines at word boundaries only.
 if has("syntax")
     syntax enable
 endif
+
 " http://ethanschoonover.com/solarized
 if !empty(split(globpath(&runtimepath, "colors/solarized.vim"), "\n"))
     colorscheme solarized
@@ -59,9 +56,18 @@ else
     " The ones included with Vim are all pretty ugly.
 endif
 
+set linebreak       " Wrap lines at word boundaries only.
+set number          " Absolute line numbers on the left.
+set ruler
+set showcmd         " Show in-progress Normal mode commands.
+
 " Incremental searching with highlighting.
 set hlsearch
 set incsearch
+
+set listchars+=tab:>-   " Show tabs as '>-------' in list mode
+set listchars+=trail:~  " Show trailing spaces as '~' in list mode
+
 
 " ---------- MISCELLANEOUS ----------
 
@@ -73,6 +79,7 @@ set printoptions+=paper:letter
 let g:netrw_sort_sequence = ''  " Disable weird netrw sorting.
 let g:loaded_netrw = 1          " Disable netrw entirely until I can
 let g:loaded_netrwPlugin = 1    "       fix the broken mappings.
+
 if filereadable(glob("~/.vimrc.local"))
     source ~/.vimrc.local
 endif

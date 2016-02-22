@@ -1,21 +1,21 @@
-" ========== PATHOGEN.VIM ==========
+" ---------- PATHOGEN.VIM ----------
 
 runtime bundle/vim-pathogen/autoload/pathogen.vim
 if exists("*pathogen#infect")
     execute pathogen#infect()
 endif
 
-" ========== GENERAL ==========
+" ---------- GENERAL ----------
 
 set modelines&          " Override /usr/share/vim/vimrc on OS X
 
-" ========== EDITING ==========
+" ---------- EDITING ----------
 
 set backspace=indent    " Allow backspacing over autoindent
 set backspace+=eol      " Allow backspacing over line breaks
 set backspace+=start    " Allow backspacing over start of insert
 
-" ========== FORMATTING AND INDENTING ==========
+" ---------- FORMATTING AND INDENTING ----------
 
 set textwidth=72
 set nojoinspaces        " One space between sentences when joining
@@ -42,7 +42,7 @@ if has("autocmd")
     filetype plugin indent on
 endif
 
-" ========== DISPLAY ==========
+" ---------- DISPLAY ----------
 
 set number                  " Show line numbers
     set ruler               " Show ruler
@@ -58,16 +58,16 @@ else
     " The ones included with Vim are all pretty ugly.
 endif
 
-" ========== SEARCHING ==========
+" ---------- SEARCHING ----------
 
     set hlsearch        " Highlight matches
     set incsearch       " Incremental search
 
-" ========== PRINTING ==========
+" ---------- PRINTING ----------
 
 set printoptions+=paper:letter
 
-" ========== MISC ==========
+" ---------- MISC ----------
 
 let g:netrw_sort_sequence = ''  " disable weird netrw sorting
 let g:loaded_netrw = 1          " disable netrw entirely until I can

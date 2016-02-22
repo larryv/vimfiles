@@ -18,11 +18,9 @@ set backspace=indent,eol,start
 " Use four spaces for indenting and <Tab>bing.
 set expandtab
 set shiftwidth=4
-if v:version > 703 || v:version == 703 && has("patch693")
-    set softtabstop=-1
-else
-    set softtabstop=4
-endif
+let &softtabstop = v:version > 703 || v:version == 703 && has("patch693")
+                 \ ? -1
+                 \ : &shiftwidth
 
 " Insert comment leaders (e.g., '#' or '//') automatically.
 set formatoptions+=or

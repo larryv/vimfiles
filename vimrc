@@ -5,19 +5,12 @@ if exists("*pathogen#infect")
     execute pathogen#infect()
 endif
 
-" ---------- GENERAL ----------
-
-" OS X's system vimrc disables modelines.
-set modelines&
-
 " ---------- EDITING ----------
 
 " The most permissive backspacing possible.
 set backspace=indent
 set backspace+=eol
 set backspace+=start
-
-" ---------- FORMATTING AND INDENTING ----------
 
 " Insert comment leaders (e.g., '#' or '//') automatically.
 set formatoptions+=o
@@ -66,17 +59,16 @@ else
     " The ones included with Vim are all pretty ugly.
 endif
 
-" ---------- SEARCHING ----------
-
 " Incremental searching with highlighting.
 set hlsearch
 set incsearch
 
-" ---------- PRINTING ----------
+" ---------- MISCELLANEOUS ----------
+
+" OS X's system vimrc disables modelines.
+set modelines&
 
 set printoptions+=paper:letter
-
-" ---------- MISCELLANEOUS ----------
 
 let g:netrw_sort_sequence = ''  " Disable weird netrw sorting.
 let g:loaded_netrw = 1          " Disable netrw entirely until I can

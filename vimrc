@@ -7,52 +7,60 @@ endif
 
 " ---------- GENERAL ----------
 
-set modelines&          " Override /usr/share/vim/vimrc on OS X
+" OS X's system vimrc disables modelines.
+set modelines&
 
 " ---------- EDITING ----------
 
-set backspace=indent    " Allow backspacing over autoindent
-set backspace+=eol      " Allow backspacing over line breaks
-set backspace+=start    " Allow backspacing over start of insert
+" The most permissive backspacing possible.
+set backspace=indent
+set backspace+=eol
+set backspace+=start
 
 " ---------- FORMATTING AND INDENTING ----------
 
+" Insert comment leaders (e.g., '#' or '//') automatically.
+set formatoptions+=o
+set formatoptions+=r
+
+" Break long lines, but with restrictions.
 set textwidth=72
-set nojoinspaces        " One space between sentences when joining
-set formatoptions+=r    " Insert comment leaders on <Enter> in Insert mode
-set formatoptions+=o    " Insert comment leaders on 'o'/'O' in Normal mode
-set formatoptions+=l    " Don't break long lines in Insert mode
-set formatoptions+=1    " Don't break after one-letter words
+set formatoptions+=l
+set formatoptions+=1
+
+" Join lines with one space between sentences, removing comment leaders.
+set nojoinspaces
 if v:version > 703 || v:version == 703 && has("patch541")
-    set formatoptions+=j    " Remove comment leaders when joining
+    set formatoptions+=j
 endif
 
-set expandtab           " Use spaces for indents
-set shiftwidth=4        " 4 spaces per (auto)indent
+" Use four spaces for indenting and <Tab>bing.
+set expandtab
+set shiftwidth=4
 if v:version > 703 || v:version == 703 && has("patch693")
-    set softtabstop=-1  " [shiftwidth] spaces per <Tab>
+    set softtabstop=-1
 else
-    set softtabstop=4   " 4 spaces per <Tab>
+    set softtabstop=4
 endif
 set listchars+=tab:>-   " Show tabs as '>-------' in list mode
 set listchars+=trail:~  " Show trailing spaces as '~' in list mode
 
 if has("autocmd")
-    " Enable indenting, plugins, and filetype detection
     filetype plugin indent on
 endif
 
 " ---------- DISPLAY ----------
 
-set number                  " Show line numbers
-    set ruler               " Show ruler
-    set showcmd             " Show partial commands in ruler
-    set linebreak           " Wrap lines at word boundaries only
+set number          " Absolute line numbers on the left.
+set ruler
+set showcmd         " Show in-progress Normal mode commands.
+set linebreak       " Wrap lines at word boundaries only.
 if has("syntax")
-    syntax enable           " Enable syntax highlighting
+    syntax enable
 endif
+" http://ethanschoonover.com/solarized
 if !empty(split(globpath(&runtimepath, "colors/solarized.vim"), "\n"))
-    colorscheme solarized   " http://ethanschoonover.com/solarized
+    colorscheme solarized
 else
     " TODO: Pick an alternate scheme that works for light backgrounds.
     " The ones included with Vim are all pretty ugly.
@@ -60,8 +68,9 @@ endif
 
 " ---------- SEARCHING ----------
 
-    set hlsearch        " Highlight matches
-    set incsearch       " Incremental search
+" Incremental searching with highlighting.
+set hlsearch
+set incsearch
 
 " ---------- PRINTING ----------
 
@@ -69,9 +78,9 @@ set printoptions+=paper:letter
 
 " ---------- MISC ----------
 
-let g:netrw_sort_sequence = ''  " disable weird netrw sorting
-let g:loaded_netrw = 1          " disable netrw entirely until I can
-let g:loaded_netrwPlugin = 1    "       fix the broken mappings
+let g:netrw_sort_sequence = ''  " Disable weird netrw sorting.
+let g:loaded_netrw = 1          " Disable netrw entirely until I can
+let g:loaded_netrwPlugin = 1    "       fix the broken mappings.
 if filereadable(glob("~/.vimrc.local"))
     source ~/.vimrc.local
 endif

@@ -8,9 +8,6 @@ endif
 " ========== GENERAL ==========
 
 set modelines&          " Override /usr/share/vim/vimrc on OS X
-if has("multi_byte")
-    set encoding=utf-8
-endif
 if has("autocmd")
     " Remove autocommands to prevent duplicates
     autocmd!
@@ -26,11 +23,8 @@ set backspace+=start    " Allow backspacing over start of insert
 
 set textwidth=72
 set nojoinspaces        " One space between sentences when joining
-set formatoptions+=t    " Auto-wrap text
-set formatoptions+=c    " Auto-wrap comments
 set formatoptions+=r    " Insert comment leaders on <Enter> in Insert mode
 set formatoptions+=o    " Insert comment leaders on 'o'/'O' in Normal mode
-set formatoptions+=q    " Allow formatting with 'gq'
 set formatoptions+=l    " Don't break long lines in Insert mode
 set formatoptions+=1    " Don't break after one-letter words
 if v:version > 703 || v:version == 703 && has("patch541")
@@ -70,8 +64,9 @@ if has("syntax")
 endif
 if !empty(split(globpath(&runtimepath, "colors/solarized.vim"), "\n"))
     colorscheme solarized   " http://ethanschoonover.com/solarized
-elseif !has("gui_running")
-    colorscheme desert      " Decent alternative for dark bg
+else
+    " TODO: Pick an alternate scheme that works for light backgrounds.
+    " The ones included with Vim are all pretty ugly.
 endif
 
 " ========== SEARCHING ==========
@@ -83,15 +78,6 @@ endif
 
 " ========== PRINTING ==========
 
-if has("iconv")
-    set printencoding=utf-8
-endif
-if has("statusline")
-    " File name, help flag, modified flag, and page number
-    set printheader="%t%h%m%=Page %N"
-endif
-set printoptions+=right:10pc    " Match default left margin
-set printoptions+=number:y      " Print line numbers
 set printoptions+=paper:letter
 
 " ========== MISC ==========

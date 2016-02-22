@@ -43,12 +43,12 @@ if has("syntax")
 endif
 
 " http://ethanschoonover.com/solarized
-if !empty(split(globpath(&runtimepath, "colors/solarized.vim"), "\n"))
+try
     colorscheme solarized
-else
+catch /^Vim(colorscheme):E185/
     " TODO: Pick an alternate scheme that works for light backgrounds.
     " The ones included with Vim are all pretty ugly.
-endif
+endtry
 
 set linebreak       " Wrap lines at word boundaries only.
 set number          " Absolute line numbers on the left.

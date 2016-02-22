@@ -59,8 +59,22 @@ set showcmd         " Show in-progress Normal mode commands.
 set hlsearch
 set incsearch
 
-set listchars+=tab:>-   " Show tabs as '>-------' in list mode
-set listchars+=trail:~  " Show trailing spaces as '~' in list mode
+" Use these Unicode characters in list mode if possible:
+" - U+00B6 PILCROW
+" - U+00BB RIGHT-POINTING DOUBLE ANGLE QUOTATION MARK
+" - U+00B7 MIDDLE DOT
+function! s:set_custom_listchars()
+    let &listchars = &encoding == "utf-8"
+                   \ ? "trail:~,eol:\u00B6,tab:\u00BB-,nbsp:\u00B7"
+                   \ : "trail:~,eol:$,tab:>-,nbsp:."
+endfunction
+call s:set_custom_listchars()
+
+" Update 'listchars' automatically if 'encoding' changes.
+if has("autocmd") && has("multi_byte") && !exists("s:autocommands_loaded")
+    let s:autocommands_loaded = 1
+    autocmd EncodingChanged * call s:set_custom_listchars()
+endif
 
 
 " ---------- MISCELLANEOUS ----------

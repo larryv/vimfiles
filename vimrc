@@ -1,4 +1,4 @@
-" ---------- PATHOGEN.VIM ----------
+" ---------- PATHOGEN ----------
 
 runtime bundle/vim-pathogen/autoload/pathogen.vim
 if exists("*pathogen#infect")
@@ -49,7 +49,7 @@ if has("autocmd")
     filetype plugin indent on
 endif
 
-" ---------- DISPLAY ----------
+" ---------- VIEWING ----------
 
 set number          " Absolute line numbers on the left.
 set ruler
@@ -76,7 +76,7 @@ set incsearch
 
 set printoptions+=paper:letter
 
-" ---------- MISC ----------
+" ---------- MISCELLANEOUS ----------
 
 let g:netrw_sort_sequence = ''  " Disable weird netrw sorting.
 let g:loaded_netrw = 1          " Disable netrw entirely until I can

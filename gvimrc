@@ -5,6 +5,6 @@ set guioptions-=T
 set guioptions+=g
 
 try
-    source ~/.gvimrc.local
+    source <sfile>.local
 catch /^Vim(source):E484/
 endtry

@@ -93,6 +93,6 @@ let g:loaded_netrw = 1          " Disable netrw entirely until I can
 let g:loaded_netrwPlugin = 1    "       fix the broken mappings.
 
 try
-    source ~/.vimrc.local
+    source <sfile>.local
 catch /^Vim(source):E484/
 endtry

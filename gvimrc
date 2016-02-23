@@ -4,6 +4,7 @@ set guioptions-=T
 " Showing inactive menu items aids discoverability.
 set guioptions+=g
 
-if filereadable(glob("~/.gvimrc.local"))
+try
     source ~/.gvimrc.local
-endif
+catch /^Vim(source):E484/
+endtry

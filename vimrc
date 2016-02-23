@@ -18,9 +18,11 @@ set backspace=indent,eol,start
 " Use four spaces for indenting and <Tab>bing.
 set expandtab
 set shiftwidth=4
-let &softtabstop = v:version > 703 || v:version == 703 && has("patch693")
-                 \ ? -1
-                 \ : &shiftwidth
+try
+    set softtabstop=-1      " Introduced in 7.3.693.
+catch /^Vim(set):E487/
+    let &softtabstop = &shiftwidth
+endtry
 
 " Insert comment leaders (e.g., '#' or '//') automatically.
 set formatoptions+=or
@@ -31,9 +33,11 @@ set formatoptions+=l1
 
 " Join lines with one space between sentences, removing comment leaders.
 set nojoinspaces
-if v:version > 703 || v:version == 703 && has("patch541")
-    set formatoptions+=j
-endif
+try
+    set formatoptions+=j    " Introduced in 7.3.541.
+catch /^Vim(set):E539/
+endtry
+
 
 
 " ---------- VIEWING ----------
@@ -88,6 +92,7 @@ let g:netrw_sort_sequence = ''  " Disable weird netrw sorting.
 let g:loaded_netrw = 1          " Disable netrw entirely until I can
 let g:loaded_netrwPlugin = 1    "       fix the broken mappings.
 
-if filereadable(glob("~/.vimrc.local"))
+try
     source ~/.vimrc.local
-endif
+catch /^Vim(source):E484/
+endtry

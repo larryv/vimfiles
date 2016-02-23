@@ -8,10 +8,6 @@ endif
 " ========== GENERAL ==========
 
 set modelines&          " Override /usr/share/vim/vimrc on OS X
-if has("autocmd")
-    " Remove autocommands to prevent duplicates
-    autocmd!
-endif
 
 " ========== EDITING ==========
 

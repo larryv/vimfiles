@@ -68,7 +68,7 @@ set incsearch
 " - U+00BB RIGHT-POINTING DOUBLE ANGLE QUOTATION MARK
 " - U+00B7 MIDDLE DOT
 function! s:set_custom_listchars()
-    let &listchars = &encoding == "utf-8"
+    let &listchars = &encoding =~ '^\%(utf\|ucs\)-'
                    \ ? "trail:~,eol:\u00B6,tab:\u00BB-,nbsp:\u00B7"
                    \ : "trail:~,eol:$,tab:>-,nbsp:."
 endfunction

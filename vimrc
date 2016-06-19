@@ -63,6 +63,12 @@ set showcmd         " Show in-progress Normal mode commands.
 set hlsearch
 set incsearch
 
+" Spell checking.
+if has("syntax")
+    set spell
+    set spelllang=en_us
+endif
+
 " Use these Unicode characters in list mode if possible:
 " - U+00B6 PILCROW
 " - U+00BB RIGHT-POINTING DOUBLE ANGLE QUOTATION MARK

@@ -63,10 +63,11 @@ set showcmd         " Show in-progress Normal mode commands.
 set hlsearch
 set incsearch
 
-" Spell checking. (I don't enable checking globally because many
-" filetypes become riddled with false positives. The guilty syntax files
-" don't properly delineate where checking is and isn't appropriate.)
+" Spell checking. (This can be disabled in after/ftplugin for filetypes
+" that are riddled with false positives because their syntax files don't
+" properly delineate where checking is and isn't appropriate.)
 if has("syntax")
+    set spell
     set spelllang=en_us
 endif
 

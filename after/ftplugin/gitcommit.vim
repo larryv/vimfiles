@@ -3,5 +3,3 @@
 setlocal autoindent
 let &l:formatlistpat = '^\s*[-*]\s*'
 setlocal formatoptions+=n
-
-setlocal spell

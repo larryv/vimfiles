@@ -1,11 +1,3 @@
-" ---------- PATHOGEN ----------
-
-runtime bundle/vim-pathogen/autoload/pathogen.vim
-if exists("*pathogen#infect")
-    execute pathogen#infect()
-endif
-
-
 " ---------- EDITING ----------
 
 if has("autocmd")

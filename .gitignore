@@ -3,3 +3,6 @@
 
 # Packages
 pack/
+
+# Spell files
+spell/*.spl

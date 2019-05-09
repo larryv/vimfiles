@@ -24,3 +24,7 @@ try
 catch /^Vim(set):E487/
     let &l:softtabstop = &shiftwidth
 endtry
+
+
+" Make formatting of lists work for items of more than two lines.
+setlocal autoindent

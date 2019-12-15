@@ -51,14 +51,6 @@ if has("syntax")
     syntax enable
 endif
 
-" http://ethanschoonover.com/solarized
-try
-    colorscheme solarized
-catch /^Vim(colorscheme):E185/
-    " TODO: Pick an alternate scheme that works for light backgrounds.
-    " The ones included with Vim are all pretty ugly.
-endtry
-
 set linebreak       " Wrap lines at word boundaries only.
 set number          " Absolute line numbers on the left.
 set ruler
@@ -102,8 +94,6 @@ endif
 
 " OS X's system vimrc disables modelines.
 set modelines&
-
-set printoptions+=paper:letter
 
 let g:netrw_sort_sequence = ''  " Disable weird netrw sorting.
 let g:loaded_netrw = 1          " Disable netrw entirely until I can

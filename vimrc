@@ -95,8 +95,6 @@ endif
 " OS X's system vimrc disables modelines.
 set modelines&
 
-let g:netrw_sort_sequence = ''  " Disable weird netrw sorting.
-
 try
     source ~/.vimrc.local
 catch /^Vim(source):E484/

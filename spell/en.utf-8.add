@@ -4,10 +4,12 @@ Arq
 dotfiles
 EagleFiler
 globals
+hostname
 iChat
 iMessage
 LaunchBar
 macOS
+metadata
 pathname
 pathnames
 POSIX
@@ -15,7 +17,10 @@ postflight
 preflight
 rsync
 SSD
+subdirectories
+symlink
 timestamp
 timestamps
 TOCTOU
+toolkits
 Velázquez

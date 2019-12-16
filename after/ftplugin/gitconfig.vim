@@ -12,3 +12,12 @@
 " <https://creativecommons.org/publicdomain/zero/1.0/>.
 
 setlocal nospell
+
+" Indent with tabs because `git config` does.
+setlocal noexpandtab
+try
+    " Introduced in 7.3.629.
+    setlocal shiftwidth=0
+catch /^Vim(setlocal):E487/
+    let &l:shiftwidth = &tabstop
+endtry

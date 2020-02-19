@@ -34,7 +34,7 @@ endtry
 set formatoptions+=or
 
 " Break long lines, but with restrictions.
-set textwidth=72
+set textwidth=78
 set formatoptions+=l1
 
 " Join lines with one space between sentences, removing comment leaders.
@@ -52,7 +52,6 @@ if has("syntax")
 endif
 
 set linebreak       " Wrap lines at word boundaries only.
-set number          " Absolute line numbers on the left.
 set ruler
 set showcmd         " Show in-progress Normal mode commands.
 

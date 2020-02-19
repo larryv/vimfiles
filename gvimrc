@@ -18,6 +18,9 @@ set guioptions-=T
 " Showing inactive menu items aids discoverability.
 set guioptions+=g
 
+" Absolute line numbers on the left.
+set number
+
 try
     source ~/.gvimrc.local
 catch /^Vim(source):E484/

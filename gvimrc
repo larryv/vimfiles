@@ -1,6 +1,6 @@
 " vimfiles - My Vim configuration
 "
-" Written in 2012, 2016, 2019 by Lawrence Velázquez <vq@larryv.me>
+" Written in 2012, 2016, 2019-2020 by Lawrence Velázquez <vq@larryv.me>
 "
 " To the extent possible under law, the author(s) have dedicated all
 " copyright and related and neighboring rights to this software to the

@@ -73,17 +73,25 @@ if has("syntax")
 endif
 
 " Display more than just EOL in list mode.
-" - U+00B6 PILCROW
-" - U+00BB RIGHT-POINTING DOUBLE ANGLE QUOTATION MARK
-" - U+00B7 MIDDLE DOT
-" - U+2190 LEFTWARDS ARROW
-" - U+2192 RIGHTWARDS ARROW
 function s:set_listchars()
-    let &listchars =
-        \ &encoding =~ '^\%(utf\|ucs\)-'
-            \ ? "trail:~,eol:\u00B6,tab:\u00BB-,extends:\u2192,"
-            \   . "precedes:\u2190,nbsp:\u00B7"
-            \ : "trail:~,eol:$,tab:>-,extends:>,precedes:<,nbsp:."
+    try
+        " Three-character 'tab' introduced in 8.1.0759.
+        set listchars=tab:xyz
+        " U+00B6 PILCROW
+        " U+00B7 MIDDLE DOT
+        " U+2190 LEFTWARDS ARROW
+        " U+2192 RIGHTWARDS ARROW
+        " U+23AF HORIZONTAL LINE EXTENSION
+        let &listchars = &encoding == "utf-8"
+                    \ ? "eol:\u00B6,tab:\u23AF\u23AF\u2192,trail:\u00B7,"
+                    \   . "extends:\u2192,precedes:\u2190,nbsp:\u00B7"
+                    \ : "eol:$,tab:-->,trail:~,extends:>,precedes:<,nbsp:~"
+    catch /^Vim(set):E474/
+        let &listchars = &encoding == "utf-8"
+                    \ ? "eol:\u00B6,tab:\u2192\u23AF,trail:\u00B7,"
+                    \   . "extends:\u2192,precedes:\u2190,nbsp:\u00B7"
+                    \ : "eol:$,tab:>-,trail:~,extends:>,precedes:<,nbsp:~"
+    endtry
 endfunction
 call s:set_listchars()
 if has("autocmd") && has("multi_byte") && !exists("s:autocommands_loaded")

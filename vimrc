@@ -12,6 +12,14 @@
 " <https://creativecommons.org/publicdomain/zero/1.0/>.
 
 
+" Avoid duplicate autocommands if this file is sourced more than once.
+if has("autocmd")
+    augroup vimrc
+        autocmd!
+    augroup END
+endif
+
+
 " ---------- EDITING ----------
 
 if has("autocmd")
@@ -94,9 +102,8 @@ function s:set_listchars()
     endtry
 endfunction
 call s:set_listchars()
-if has("autocmd") && has("multi_byte") && !exists("s:autocommands_loaded")
-    let s:autocommands_loaded = 1
-    autocmd EncodingChanged * call s:set_listchars()
+if has("autocmd") && has("multi_byte")
+    autocmd vimrc EncodingChanged * call s:set_listchars()
 endif
 
 

@@ -61,8 +61,16 @@ if has("syntax")
     syntax enable
 endif
 
-" Soft-wrap only at certain characters.
+" Soft-wrap only at certain characters, and prefix wrapped lines.
 set linebreak
+function s:set_showbreak()
+    " U+21AA RIGHTWARDS ARROW WITH HOOK
+    let &showbreak = &encoding == "utf-8" ? "\u21AA " : "+> "
+endfunction
+call s:set_showbreak()
+if has("autocmd") && has("multi_byte")
+    autocmd vimrc EncodingChanged * call s:set_showbreak()
+endif
 
 " Enable ruler and show in-progress Normal-mode commands.
 set ruler

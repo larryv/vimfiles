@@ -25,7 +25,8 @@ set backspace=indent,eol,start
 set expandtab
 set shiftwidth=4
 try
-    set softtabstop=-1      " Introduced in 7.3.693.
+    " Introduced in 7.3.693.
+    set softtabstop=-1
 catch /^Vim(set):E487/
     let &softtabstop = &shiftwidth
 endtry
@@ -40,7 +41,8 @@ set formatoptions+=l1
 " Join lines with one space between sentences, removing comment leaders.
 set nojoinspaces
 try
-    set formatoptions+=j    " Introduced in 7.3.541.
+    " Introduced in 7.3.541.
+    set formatoptions+=j
 catch /^Vim(set):E539/
 endtry
 
@@ -51,9 +53,12 @@ if has("syntax")
     syntax enable
 endif
 
-set linebreak       " Wrap lines at word boundaries only.
+" Soft-wrap only at certain characters.
+set linebreak
+
+" Enable ruler and show in-progress Normal-mode commands.
 set ruler
-set showcmd         " Show in-progress Normal mode commands.
+set showcmd
 
 " Incremental searching with highlighting.
 set hlsearch
@@ -67,25 +72,23 @@ if has("syntax")
     set spelllang=en_us
 endif
 
-" Use these Unicode characters in list mode if possible:
+" Display more than just EOL in list mode.
 " - U+00B6 PILCROW
 " - U+00BB RIGHT-POINTING DOUBLE ANGLE QUOTATION MARK
 " - U+00B7 MIDDLE DOT
 " - U+2190 LEFTWARDS ARROW
 " - U+2192 RIGHTWARDS ARROW
-function! s:set_custom_listchars()
+function s:set_listchars()
     let &listchars =
         \ &encoding =~ '^\%(utf\|ucs\)-'
             \ ? "trail:~,eol:\u00B6,tab:\u00BB-,extends:\u2192,"
             \   . "precedes:\u2190,nbsp:\u00B7"
             \ : "trail:~,eol:$,tab:>-,extends:>,precedes:<,nbsp:."
 endfunction
-call s:set_custom_listchars()
-
-" Update 'listchars' automatically if 'encoding' changes.
+call s:set_listchars()
 if has("autocmd") && has("multi_byte") && !exists("s:autocommands_loaded")
     let s:autocommands_loaded = 1
-    autocmd EncodingChanged * call s:set_custom_listchars()
+    autocmd EncodingChanged * call s:set_listchars()
 endif
 
 

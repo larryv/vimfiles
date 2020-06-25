@@ -20,6 +20,16 @@ if has("autocmd")
 endif
 
 
+" ---------- PATHOGEN ----------
+
+if !has("packages")
+    runtime pack/vim-pathogen/opt/vim-pathogen/autoload/pathogen.vim
+    if exists("*pathogen#infect")
+        execute pathogen#infect()
+    endif
+endif
+
+
 " ---------- EDITING ----------
 
 if has("autocmd")

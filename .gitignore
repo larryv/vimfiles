@@ -1,5 +1,6 @@
-# Packages
-pack/
+# Local packages
+/pack/*
+!/pack/versioned/
 
 # Spell files
 spell/*.spl

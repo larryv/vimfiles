@@ -1,6 +1,8 @@
 API
 AppleScript
 Arq
+builtins
+discoverability
 dotfiles
 EagleFiler
 executables
@@ -23,6 +25,7 @@ naïve
 pathname
 pathnames
 portably
+portably
 POSIX
 postflight
 preflight
@@ -33,6 +36,8 @@ rsync
 SHA1
 SSD
 subdirectories
+submodule
+submodules
 subshell
 subshells
 symlink
@@ -43,3 +48,8 @@ toolkits
 Velázquez
 whitespace
 zsh
+URI
+tmux
+printf
+multigraph
+multigraphs

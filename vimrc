@@ -1,6 +1,6 @@
 " vimfiles - My Vim configuration
 "
-" Written in 2012-2016, 2019-2020 by Lawrence Velázquez <vq@larryv.me>
+" Written in 2012-2016, 2019-2021 by Lawrence Velázquez <vq@larryv.me>
 "
 " To the extent possible under law, the author(s) have dedicated all
 " copyright and related and neighboring rights to this software to the
@@ -72,14 +72,23 @@ if has("syntax")
 endif
 
 " Soft-wrap only at certain characters, and prefix wrapped lines.
-set linebreak
-function s:set_showbreak()
+if has("linebreak")
+    set linebreak
     " U+21AA RIGHTWARDS ARROW WITH HOOK
-    let &showbreak = &encoding == "utf-8" ? "\u21AA " : "+> "
-endfunction
-call s:set_showbreak()
-if has("autocmd") && has("multi_byte")
-    autocmd vimrc EncodingChanged * call s:set_showbreak()
+    " Technically, I shouldn't be using this because it's not a single-
+    " cell character, but it works well enough in Apple Terminal when
+    " followed by a space. Unfortunately, MacVim sometimes renders the
+    " space *over* the head of the arrow, cutting it off. Fortunately,
+    " I show line numbers in MacVim, making this much less necessary.
+    if !has("gui_running")
+        function s:set_showbreak()
+            let &showbreak = &encoding == "utf-8" ? "\u21AA " : "+> "
+        endfunction
+        call s:set_showbreak()
+        if has("autocmd") && has("multi_byte")
+            autocmd vimrc EncodingChanged * call s:set_showbreak()
+        endif
+    endif
 endif
 
 " Enable ruler and show in-progress Normal-mode commands.

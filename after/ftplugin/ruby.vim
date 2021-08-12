@@ -22,6 +22,6 @@ setlocal shiftwidth=2
 try
     " Introduced in 7.3.693
     setlocal softtabstop=-1
-catch /^Vim(setlocal):E487/
+catch /\m\C^Vim(setlocal):E487:/
     let &l:softtabstop = &shiftwidth
 endtry

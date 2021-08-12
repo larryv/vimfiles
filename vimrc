@@ -98,7 +98,7 @@ set modelines&
 " absent, create an empty, readable ~/.vimrc.local file.)
 silent! execute 'try'
     source ~/.vimrc.local
-silent! catch /^Vim(source):E484/
+silent! catch /\m\C^Vim(source):E484:/
 silent! endtry
 
 " Enable syntax highlighting if colors are available.  Skip the GUI

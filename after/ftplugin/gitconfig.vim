@@ -22,6 +22,6 @@ setlocal noexpandtab
 try
     " Introduced in 7.3.629.
     setlocal shiftwidth=0
-catch /^Vim(setlocal):E487/
+catch /\m\C^Vim(setlocal):E487:/
     let &l:shiftwidth = &tabstop
 endtry

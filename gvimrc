@@ -32,7 +32,7 @@ set showbreak&
 " +eval is absent, create an empty, readable ~/.gvimrc.local file.)
 silent! execute 'try'
     source ~/.gvimrc.local
-silent! catch /^Vim(source):E484/
+silent! catch /\m\C^Vim(source):E484:/
 silent! endtry
 
 " Do this down here to let ~/.gvimrc.local make tweaks first, if

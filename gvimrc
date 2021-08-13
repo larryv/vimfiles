@@ -15,13 +15,13 @@
 " SPDX-License-Identifier: CC0-1.0
 
 
-" I don't want a toolbar; this isn't Office.
+" Disable toolbar.
 set guioptions-=T
 
-" Showing inactive menu items aids discoverability.
+" Show inactive menu items to aid discoverability.
 set guioptions+=g
 
-" Absolute line numbers on the left.  This makes prefixing
+" Show absolute line numbers in the left gutter.  This makes prefixing
 " soft-wrapped lines largely pointless, so stop doing that.
 set number
 set showbreak&

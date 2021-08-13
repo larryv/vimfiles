@@ -15,4 +15,5 @@
 " SPDX-License-Identifier: CC0-1.0
 
 
+" Discourage subject lines longer than 50 characters.
 highlight link gitcommitOverflow Error

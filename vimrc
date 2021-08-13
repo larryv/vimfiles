@@ -23,9 +23,9 @@ silent! augroup END
 
 " ---------- PATHOGEN ----------
 
-if !has("packages")
+if !has('packages')
     runtime pack/versioned/opt/vim-pathogen/autoload/pathogen.vim
-    if exists("*pathogen#infect")
+    if exists('*pathogen#infect')
         execute pathogen#infect()
     endif
 endif
@@ -35,7 +35,7 @@ endif
 
 silent! filetype plugin indent on
 
-" Use four spaces for indenting and <Tab>bing.
+" Default to four spaces for indenting.
 set expandtab
 set shiftwidth=4
 set softtabstop=4
@@ -46,14 +46,12 @@ if v:version > 703 || (v:version == 703 && has('patch693'))
     set softtabstop=-1
 endif
 
-" Insert comment leaders (e.g., '#' or '//') automatically.
-set formatoptions+=or
-
 " Break long lines, but with restrictions.
 set textwidth=72
 set formatoptions+=l1
 
-" Remove comment leaders when joining lines.
+" Manage comment leaders (e.g., '#' or '//') automatically.
+set formatoptions+=or
 silent! set formatoptions+=j    " Needs patch 7.3.541.
 
 " Use two spaces between sentences for compatibility with vi and Emacs.
@@ -107,6 +105,9 @@ silent! execute 'try'
     source ~/.vimrc.local
 silent! catch /\m\C^Vim(source):E484:/
 silent! endtry
+
+
+" ---------- EPILOGUE ----------
 
 " Enable syntax highlighting if colors are available.  Skip the GUI
 " because gvimrc handles that.  Do this down here to let ~/.vimrc.local

@@ -23,5 +23,5 @@ try
     " Introduced in 7.3.693
     setlocal softtabstop=-1
 catch /\m\C^Vim(setlocal):E487:/
-    let &l:softtabstop = &shiftwidth
+    let &l:softtabstop = &l:shiftwidth ? &l:shiftwidth : &l:tabstop
 endtry

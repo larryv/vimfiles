@@ -53,8 +53,8 @@ if has('multi_byte')
     " U+21AA RIGHTWARDS ARROW WITH HOOK
     " Technically, I shouldn't be using this because it's not a single-
     " cell character, but it works well enough in Apple Terminal when
-    " followed by a space. Unfortunately, MacVim sometimes renders the
-    " space *over* the head of the arrow, cutting it off. Fortunately,
+    " followed by a space.  Unfortunately, MacVim sometimes renders the
+    " space *over* the head of the arrow, cutting it off.  Fortunately,
     " I show line numbers in MacVim, making this much less necessary.
     if has('linebreak') && !has('gui_running')
         let g:multibyte_optvals['latin1'].showbreak = &showbreak

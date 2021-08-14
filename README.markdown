@@ -82,6 +82,15 @@ Error-checking is omitted for brevity.
             touch ~/.vimrc.local ~/.gvimrc.local
             ```
 
+        -   If using Vim 7.1 or later or 7.0 with patches [234][4] and
+            [235][5], reenable modelines in `$HOME/.vimrc.local`.  They
+            are disabled by default to mitigate [CVE-2007-2438][6].
+
+            ```vim
+            set modeline&
+            set modelines&
+            ```
+
 
 ## Customization ##
 
@@ -178,6 +187,10 @@ This work is published from the United States of America using the [CC0
  [1]: https://www.vim.org
  [2]: https://ftp.nluug.nl/pub/vim/patches/7.3/7.3.1178
  [3]: https://vimhelp.org/eval.txt.html#no-eval-feature
+ [4]: https://ftp.nluug.nl/pub/vim/patches/7.0/7.0.234
+ [5]: https://ftp.nluug.nl/pub/vim/patches/7.0/7.0.235
+ [6]: https://nvd.nist.gov/vuln/detail/CVE-2007-2438
+   "National Vulnerability Database - CVE-2007-2438"
  [7]: https://google.github.io/styleguide/vimscriptfull.xml
  [8]: https://google.github.io/styleguide/vimscriptfull.xml#Portability
  [9]: https://google.github.io/styleguide/vimscriptfull.xml#Variables

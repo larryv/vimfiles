@@ -92,8 +92,15 @@ silent! set listchars+=tab:-->  " Needs patch 8.1.0759.
 
 " ---------- MISCELLANEOUS ----------
 
-" OS X's system vimrc disables modelines.
-set modelines&
+" Disable modelines unless CVE-2007-2438 [2] has been addressed.  (If
+" Vim has the patches but lacks +eval, reset 'modeline' and 'modelines'
+" in ~/.vimrc.local.)
+set nomodeline
+set modelines=0
+if v:version > 700 || (v:version == 700 && has('patch234') && has('patch235'))
+    set modeline&
+    set modelines&
+endif
 
 " Avoid 'silent! source ~/.vimrc.local' because that masks errors from
 " within ~/.vimrc.local itself.  Can't use 'silent! try' because without
@@ -150,4 +157,5 @@ endif
 
 " ---------- REFERENCES ----------
 "
+"  2. https://nvd.nist.gov/vuln/detail/CVE-2007-2438
 "  3. https://vimhelp.org/syntax.txt.html#xterm-color

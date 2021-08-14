@@ -15,8 +15,7 @@
 " SPDX-License-Identifier: CC0-1.0
 
 
-" Recognize bulleted lists instead of numbered lists. I never use
-" numbered lists in Git commit messages.
+" Recognize bulleted lists as well as numbered lists.
 setlocal autoindent
-let &l:formatlistpat = '^\s*[-*]\s*'
 setlocal formatoptions+=n
+let &l:formatlistpat = '\m\C^\s*\%([-*]\s\+\|\d\+[]:.)}' . "\t" . ' ]\s*\)'

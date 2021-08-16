@@ -91,7 +91,8 @@ customizations described here are not tracked by Git.)
 To add settings that are not suitable for the repository, create and
 populate `$HOME/.vimrc.local` and `$HOME/.gvimrc.local`.  These are
 sourced at the ends of `$HOME/.vim/vimrc` and `$HOME/.vim/gvimrc`, so
-they can build on or override settings from those files.
+they can build on or override settings from those files.  (See
+`vimrc.local.sample` and `gvimrc.local.sample`.)
 
 To use packages that are not suitable for the repository, place them
 anywhere in `$HOME/.vim/pack` other than `versioned`.

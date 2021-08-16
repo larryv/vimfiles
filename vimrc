@@ -16,11 +16,9 @@
 
 
 " Avoid duplicate autocommands if this file is sourced more than once.
-if has("autocmd")
-    augroup vimrc
-        autocmd!
-    augroup END
-endif
+silent! augroup vimrc
+silent! autocmd!
+silent! augroup END
 
 
 " ---------- PATHOGEN ----------
@@ -35,9 +33,7 @@ endif
 
 " ---------- EDITING ----------
 
-if has("autocmd")
-    filetype plugin indent on
-endif
+silent! filetype plugin indent on
 
 " The most permissive backspacing possible.
 set backspace=indent,eol,start
@@ -45,12 +41,13 @@ set backspace=indent,eol,start
 " Use four spaces for indenting and <Tab>bing.
 set expandtab
 set shiftwidth=4
-try
-    " Introduced in 7.3.693.
+set softtabstop=4
+" Can't use 'set softtabstop=-1' without patch 7.3.693, even silently,
+" because it leaves a value of 0.  (If Vim has that patch but lacks
+" +eval, set 'softtabstop' in ~/.vimrc.local.)
+if v:version > 703 || (v:version == 703 && has('patch693'))
     set softtabstop=-1
-catch /^Vim(set):E487/
-    let &softtabstop = &shiftwidth
-endtry
+endif
 
 " Insert comment leaders (e.g., '#' or '//') automatically.
 set formatoptions+=or
@@ -61,30 +58,27 @@ set formatoptions+=l1
 
 " Join lines with one space between sentences, removing comment leaders.
 set nojoinspaces
-try
-    " Introduced in 7.3.541.
-    set formatoptions+=j
-catch /^Vim(set):E539/
-endtry
+silent! set formatoptions+=j    " Needs patch 7.3.541.
 
 
 " ---------- VIEWING ----------
 
 " Soft-wrap only at certain characters, and prefix wrapped lines.
+set linebreak
+set showbreak=+>\   " Sentinel comment to protect the trailing space.
 if has("linebreak")
-    set linebreak
     " U+21AA RIGHTWARDS ARROW WITH HOOK
     " Technically, I shouldn't be using this because it's not a single-
     " cell character, but it works well enough in Apple Terminal when
     " followed by a space. Unfortunately, MacVim sometimes renders the
     " space *over* the head of the arrow, cutting it off. Fortunately,
     " I show line numbers in MacVim, making this much less necessary.
-    if !has("gui_running")
+    if has("multi_byte") && !has("gui_running")
         function s:set_showbreak()
             let &showbreak = &encoding == "utf-8" ? "\u21AA " : "+> "
         endfunction
         call s:set_showbreak()
-        if has("autocmd") && has("multi_byte")
+        if has("autocmd")
             autocmd vimrc EncodingChanged * call s:set_showbreak()
         endif
     endif
@@ -101,12 +95,14 @@ set incsearch
 " Spell checking. (This can be disabled in after/ftplugin for filetypes
 " that are riddled with false positives because their syntax files don't
 " properly delineate where checking is and isn't appropriate.)
-if has("syntax")
-    set spell
-    set spelllang=en_us
-endif
+set spell
+set spelllang=en_us
 
-" Display more than just EOL in list mode.
+" Display more than just EOL in list mode.  Appending a duplicate 'tab:'
+" is okay; it just supersedes the first one.
+set listchars=eol:$,tab:>-,trail:~,extends:>,precedes:<,nbsp:~
+silent! set listchars+=tab:-->  " Needs patch 8.1.0759.
+if has("multi_byte")
 function s:set_listchars()
     try
         " Three-character 'tab' introduced in 8.1.0759.
@@ -128,8 +124,9 @@ function s:set_listchars()
     endtry
 endfunction
 call s:set_listchars()
-if has("autocmd") && has("multi_byte")
+if has("autocmd")
     autocmd vimrc EncodingChanged * call s:set_listchars()
+endif
 endif
 
 
@@ -138,14 +135,19 @@ endif
 " OS X's system vimrc disables modelines.
 set modelines&
 
-try
+" Avoid 'silent! source ~/.vimrc.local' because that masks errors from
+" within ~/.vimrc.local itself.  Can't use 'silent! try' because without
+" +eval that *still* produces an error.  (To avoid E484 when +eval is
+" absent, create an empty, readable ~/.vimrc.local file.)
+silent! execute 'try'
     source ~/.vimrc.local
-catch /^Vim(source):E484/
-endtry
+silent! catch /^Vim(source):E484/
+silent! endtry
 
 " Enable syntax highlighting if colors are available.  Skip the GUI
 " because gvimrc handles that.  Do this down here to let ~/.vimrc.local
-" make terminal-specific tweaks first, if necessary [3].
+" make terminal-specific tweaks first, if necessary [3].  (If colors are
+" available but Vim lacks +eval, enable highlighting in ~/.vimrc.local.)
 if has('syntax') && !has('gui_running') && &t_Co > 2
     syntax enable
 endif

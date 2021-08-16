@@ -21,13 +21,19 @@ set guioptions-=T
 " Showing inactive menu items aids discoverability.
 set guioptions+=g
 
-" Absolute line numbers on the left.
+" Absolute line numbers on the left.  This makes prefixing
+" soft-wrapped lines largely pointless, so stop doing that.
 set number
+set showbreak&
 
-try
+" Avoid 'silent! source ~/.gvimrc.local' because that masks errors from
+" within ~/.gvimrc.local itself.  Can't use 'silent! try' because
+" without +eval that *still* produces an error.  (To avoid E484 when
+" +eval is absent, create an empty, readable ~/.gvimrc.local file.)
+silent! execute 'try'
     source ~/.gvimrc.local
-catch /^Vim(source):E484/
-endtry
+silent! catch /^Vim(source):E484/
+silent! endtry
 
 " Do this down here to let ~/.gvimrc.local make tweaks first, if
 " necessary (<https://vimhelp.org/syntax.txt.html#xterm-color>).

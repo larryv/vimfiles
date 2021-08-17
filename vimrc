@@ -66,23 +66,6 @@ silent! set formatoptions+=j    " Needs patch 7.3.541.
 " Soft-wrap only at certain characters, and prefix wrapped lines.
 set linebreak
 set showbreak=+>\   " Sentinel comment to protect the trailing space.
-if has("linebreak")
-    " U+21AA RIGHTWARDS ARROW WITH HOOK
-    " Technically, I shouldn't be using this because it's not a single-
-    " cell character, but it works well enough in Apple Terminal when
-    " followed by a space. Unfortunately, MacVim sometimes renders the
-    " space *over* the head of the arrow, cutting it off. Fortunately,
-    " I show line numbers in MacVim, making this much less necessary.
-    if has("multi_byte") && !has("gui_running")
-        function s:set_showbreak()
-            let &showbreak = &encoding == "utf-8" ? "\u21AA " : "+> "
-        endfunction
-        call s:set_showbreak()
-        if has("autocmd")
-            autocmd vimrc EncodingChanged * call s:set_showbreak()
-        endif
-    endif
-endif
 
 " Enable ruler and show in-progress Normal-mode commands.
 set ruler
@@ -102,32 +85,6 @@ set spelllang=en_us
 " is okay; it just supersedes the first one.
 set listchars=eol:$,tab:>-,trail:~,extends:>,precedes:<,nbsp:~
 silent! set listchars+=tab:-->  " Needs patch 8.1.0759.
-if has("multi_byte")
-function s:set_listchars()
-    try
-        " Three-character 'tab' introduced in 8.1.0759.
-        set listchars=tab:xyz
-        " U+00B6 PILCROW
-        " U+00B7 MIDDLE DOT
-        " U+2190 LEFTWARDS ARROW
-        " U+2192 RIGHTWARDS ARROW
-        " U+23AF HORIZONTAL LINE EXTENSION
-        let &listchars = &encoding == "utf-8"
-                    \ ? "eol:\u00B6,tab:\u23AF\u23AF\u2192,trail:\u00B7,"
-                    \   . "extends:\u2192,precedes:\u2190,nbsp:\u00B7"
-                    \ : "eol:$,tab:-->,trail:~,extends:>,precedes:<,nbsp:~"
-    catch /^Vim(set):E474/
-        let &listchars = &encoding == "utf-8"
-                    \ ? "eol:\u00B6,tab:\u2192\u23AF,trail:\u00B7,"
-                    \   . "extends:\u2192,precedes:\u2190,nbsp:\u00B7"
-                    \ : "eol:$,tab:>-,trail:~,extends:>,precedes:<,nbsp:~"
-    endtry
-endfunction
-call s:set_listchars()
-if has("autocmd")
-    autocmd vimrc EncodingChanged * call s:set_listchars()
-endif
-endif
 
 
 " ---------- MISCELLANEOUS ----------
@@ -150,6 +107,41 @@ silent! endtry
 " available but Vim lacks +eval, enable highlighting in ~/.vimrc.local.)
 if has('syntax') && !has('gui_running') && &t_Co > 2
     syntax enable
+endif
+
+" If ~/.vimrc.local created the global variable 'multibyte_optvals',
+" then use it to automatically set options according to 'encoding'.  For
+" an example of the required data structure, see vimrc.local.sample.
+" (This is controlled by ~/.vimrc.local because I don't want to use
+" non-ASCII characters in contexts where they're rendered poorly.)
+if has('multi_byte')
+    if exists('g:multibyte_optvals')
+        let s:multibyte_optvals = g:multibyte_optvals
+        unlet g:multibyte_optvals
+
+        " Weed out unrecognized option names.
+        call map(s:multibyte_optvals, 'filter(v:val, "exists(''&'' . v:key)")')
+
+        function! s:EncodingChangedHandler() abort
+            let l:optvals = get(s:multibyte_optvals, &encoding,
+                        \       get(s:multibyte_optvals, 'latin1',
+                        \           {}))
+            for [l:opt, l:val] in items(l:optvals)
+                if [eval('&l:' . l:opt)] ==# [eval('&g:' . l:opt)]
+                    execute 'let &' . l:opt . ' = l:val'
+                else
+                    " Something else set the local value, so let it be.
+                    execute 'let &g:' . l:opt . ' = l:val'
+                endif
+            endfor
+        endfunction
+
+        call s:EncodingChangedHandler()
+
+        if has('autocmd')
+            autocmd vimrc EncodingChanged * call s:EncodingChangedHandler()
+        endif
+    endif
 endif
 
 

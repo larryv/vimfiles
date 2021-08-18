@@ -24,7 +24,7 @@ silent! augroup END
 " ---------- PATHOGEN ----------
 
 if !has("packages")
-    runtime pack/vim-pathogen/opt/vim-pathogen/autoload/pathogen.vim
+    runtime pack/versioned/opt/vim-pathogen/autoload/pathogen.vim
     if exists("*pathogen#infect")
         execute pathogen#infect()
     endif

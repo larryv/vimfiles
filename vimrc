@@ -33,6 +33,11 @@ endif
 
 " ---------- EDITING ----------
 
+" Enhance the '%' Normal-mode command [1].
+if has('packages')
+    packadd! matchit
+endif
+
 silent! filetype plugin indent on
 
 " Default to four spaces for indenting.
@@ -158,5 +163,6 @@ endif
 
 " ---------- REFERENCES ----------
 "
+"  1. https://vimhelp.org/usr_05.txt.html#matchit-install
 "  2. https://nvd.nist.gov/vuln/detail/CVE-2007-2438
 "  3. https://vimhelp.org/syntax.txt.html#xterm-color

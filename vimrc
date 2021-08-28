@@ -97,6 +97,9 @@ if v:version > 700 || (v:version == 700 && has('patch234') && has('patch235'))
     set modelines&
 endif
 
+" Enable the command-line completion menu.
+set wildmenu
+
 " Avoid 'silent! source ~/.vimrc.local' because that masks errors from
 " within ~/.vimrc.local itself.  Can't use 'silent! try' because without
 " +eval that *still* produces an error.  (To avoid E484 when +eval is

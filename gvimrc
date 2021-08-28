@@ -28,3 +28,8 @@ try
     source ~/.gvimrc.local
 catch /^Vim(source):E484/
 endtry
+
+" Do this down here to let ~/.gvimrc.local make tweaks first, if
+" necessary (<https://vimhelp.org/syntax.txt.html#xterm-color>).
+" The GUI always has colors.
+silent! syntax enable

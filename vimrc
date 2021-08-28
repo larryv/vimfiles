@@ -70,10 +70,6 @@ endtry
 
 " ---------- VIEWING ----------
 
-if has("syntax")
-    syntax enable
-endif
-
 " Soft-wrap only at certain characters, and prefix wrapped lines.
 if has("linebreak")
     set linebreak
@@ -146,3 +142,15 @@ try
     source ~/.vimrc.local
 catch /^Vim(source):E484/
 endtry
+
+" Enable syntax highlighting if colors are available.  Skip the GUI
+" because gvimrc handles that.  Do this down here to let ~/.vimrc.local
+" make terminal-specific tweaks first, if necessary [3].
+if has('syntax') && !has('gui_running') && &t_Co > 2
+    syntax enable
+endif
+
+
+" ---------- REFERENCES ----------
+"
+"  3. https://vimhelp.org/syntax.txt.html#xterm-color

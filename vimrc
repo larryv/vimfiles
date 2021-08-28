@@ -35,9 +35,6 @@ endif
 
 silent! filetype plugin indent on
 
-" The most permissive backspacing possible.
-set backspace=indent,eol,start
-
 " Use four spaces for indenting and <Tab>bing.
 set expandtab
 set shiftwidth=4

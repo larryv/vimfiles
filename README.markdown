@@ -36,29 +36,32 @@ Error-checking is omitted for brevity.
 1.  Clone this repository at `$HOME/.vim`, which shouldn't exist yet.
     If it does, delete it or move it somewhere else.
 
-    ```sh
-    # Git 1.7.4.1 and later
-    git clone --recurse-submodules https://github.com/larryv/vimfiles.git ~/.vim
-    ```
+    -   Git 1.7.4.1 and later:
 
-    ```sh
-    # Git 1.6.5 and later
-    git clone --recursive https://github.com/larryv/vimfiles.git ~/.vim
-    ```
+        ```sh
+        git clone --recurse-submodules https://github.com/larryv/vimfiles.git ~/.vim
+        ```
 
-    ```sh
-    # Otherwise
-    git clone https://github.com/larryv/vimfiles.git ~/.vim
-    cd ~/.vim
-    git submodule update --init --recursive
-    ```
+    -   Git 1.6.5 and later:
+
+        ```sh
+        git clone --recursive https://github.com/larryv/vimfiles.git ~/.vim
+        ```
+
+    -   Otherwise:
+
+        ```sh
+        git clone https://github.com/larryv/vimfiles.git ~/.vim \
+            && cd ~/.vim \
+            && git submodule update --init --recursive
+        ```
 
     Alternately, clone it somewhere else and create `$HOME/.vim` as
     a link to it.
 
     ```sh
-    git clone --recurse-submodules https://github.com/larryv/vimfiles.git /somewhere/else
-    ln -s /somewhere/else ~/.vim
+    git clone --recurse-submodules https://github.com/larryv/vimfiles.git /somewhere/else \
+        && ln -s /somewhere/else ~/.vim
     ```
 
 2.  Certain uncommon setups require additional steps.

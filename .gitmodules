@@ -4,6 +4,9 @@
 [submodule "editorconfig-vim"]
 	path = pack/versioned/start/editorconfig-vim
 	url = https://github.com/editorconfig/editorconfig-vim.git
+[submodule "termcwd-vim"]
+	path = pack/versioned/start/termcwd-vim
+	url = https://github.com/larryv/termcwd-vim.git
 [submodule "vim-git"]
 	path = pack/versioned/start/vim-git
 	url = https://github.com/tpope/vim-git.git

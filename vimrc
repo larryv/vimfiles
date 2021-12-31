@@ -40,6 +40,9 @@ endif
 
 silent! filetype plugin indent on
 
+" Use vi-compatible backspacing in defiance of MacVim and macOS's vim.
+set backspace&
+
 " Default to four spaces for indenting.
 set expandtab
 set shiftwidth=4

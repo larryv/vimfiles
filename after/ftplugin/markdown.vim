@@ -1,7 +1,7 @@
 " after/ftplugin/markdown.vim
 " ---------------------------
 "
-" Written in 2016, 2019, 2021 by Lawrence Velázquez <vq@larryv.me>.
+" Written in 2016, 2019, 2021-2022 by Lawrence Velázquez <vq@larryv.me>.
 "
 " To the extent possible under law, the author(s) have dedicated all
 " copyright and related and neighboring rights to this software to the
@@ -15,12 +15,11 @@
 " SPDX-License-Identifier: CC0-1.0
 
 
-" Some Markdown implementations are aggressive about turning (non-list)
-" text into code blocks if it is indented four spaces.  I like to indent
-" link references and certain other text by two spaces to set it apart.
+" Indenting with four spaces is universally recognized
+" (https://brettterpstra.com/2015/08/24/write-better-markdown/#indentation).
 
 setlocal expandtab
-setlocal shiftwidth=2
+setlocal shiftwidth=4
 try
     " Introduced in 7.3.693
     setlocal softtabstop=-1

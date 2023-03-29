@@ -21,6 +21,8 @@ metacharacters
 metadata
 misconfiguration
 misconfigured
+multigraph
+multigraphs
 naïve
 pathname
 pathnames
@@ -31,6 +33,7 @@ postflight
 preflight
 prepend
 prepends
+printf
 reimplemented
 rsync
 SHA1
@@ -43,13 +46,10 @@ subshells
 symlink
 timestamp
 timestamps
+tmux
 TOCTOU
 toolkits
+URI
 Velázquez
 whitespace
 zsh
-URI
-tmux
-printf
-multigraph
-multigraphs

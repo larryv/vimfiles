@@ -3,7 +3,7 @@
 "
 " SPDX-License-Identifier: CC0-1.0
 "
-" Written in 2021 by Lawrence Velazquez <vq@larryv.me>.
+" Written in 2021, 2023 by Lawrence Velazquez <vq@larryv.me>.
 "
 " To the extent possible under law, the author has dedicated all
 " copyright and related and neighboring rights to this software to the
@@ -50,14 +50,9 @@ if has('multi_byte')
 
     " ----- showbreak -----
 
-    " U+21AA RIGHTWARDS ARROW WITH HOOK
-    " Technically, I shouldn't be using this because it's not a single-
-    " cell character, but it works well enough in Apple Terminal when
-    " followed by a space.  Unfortunately, MacVim sometimes renders the
-    " space *over* the head of the arrow, cutting it off.  Fortunately,
-    " I show line numbers in MacVim, making this much less necessary.
+    " U+2192 RIGHTWARDS ARROW
     if has('linebreak') && !has('gui_running')
         let g:multibyte_optvals['latin1'].showbreak = &showbreak
-        let g:multibyte_optvals['utf-8'].showbreak = "\xe2\x86\xaa "
+        let g:multibyte_optvals['utf-8'].showbreak = "\xe2\x86\x92 "
     endif
 endif

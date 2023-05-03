@@ -4,7 +4,7 @@
 
     SPDX-License-Identifier: CC0-1.0
 
-    Written in 2020-2021 by Lawrence Velazquez <vq@larryv.me>.
+    Written in 2020-2021, 2023 by Lawrence Velazquez <vq@larryv.me>.
 
     To the extent possible under law, the author has dedicated all
     copyright and related and neighboring rights to this software to the
@@ -13,7 +13,7 @@
 
     You should have received a copy of the CC0 Public Domain Dedication
     along with this software.  If not, see
-    <http://creativecommons.org/publicdomain/zero/1.0/>.
+    <https://creativecommons.org/publicdomain/zero/1.0/>.
 -->
 
 
@@ -201,4 +201,4 @@ This work is published from the United States of America using the [CC0
 [11]: https://google.github.io/styleguide/vimscriptfull.xml#Settings
 [12]: https://google.github.io/styleguide/vimscriptfull.xml#Functions
 [13]: https://vimhelp.org/eval.txt.html#has-patch
-[14]: https://creativecommons.org/publicdomain/zero/1.0
+[14]: https://creativecommons.org/publicdomain/zero/1.0/

@@ -183,8 +183,10 @@ which are not used at all in that case).
 
 ## Legal ##
 
-This work is published from the United States of America using the [CC0
-1.0 Universal Public Domain Dedication][14].
+To the extent possible under law, [the author has dedicated all
+copyright and related and neighboring rights to this software to the
+public domain worldwide][14].  This software is published from the
+United States of America and distributed without any warranty.
 
 
  [1]: https://www.vim.org
@@ -202,3 +204,4 @@ This work is published from the United States of America using the [CC0
 [12]: https://google.github.io/styleguide/vimscriptfull.xml#Functions
 [13]: https://vimhelp.org/eval.txt.html#has-patch
 [14]: https://creativecommons.org/publicdomain/zero/1.0/
+   "Creative Commons - CC0 1.0 Universal Public Domain Dedication"

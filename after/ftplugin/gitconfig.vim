@@ -3,7 +3,7 @@
 "
 " SPDX-License-Identifier: CC0-1.0
 "
-" Written in 2019, 2021 by Lawrence Velazquez <vq@larryv.me>.
+" Written in 2019, 2021, 2023 by Lawrence Velazquez <vq@larryv.me>.
 "
 " To the extent possible under law, the author has dedicated all
 " copyright and related and neighboring rights to this software to the
@@ -20,8 +20,8 @@ setlocal nospell
 " Indent with tabs because `git config` does.
 setlocal noexpandtab
 try
-    " Introduced in 7.3.629.
-    setlocal shiftwidth=0
+	" Introduced in 7.3.629.
+	setlocal shiftwidth=0
 catch /\m\C^Vim(setlocal):E487:/
-    let &l:shiftwidth = &tabstop
+	let &l:shiftwidth = &tabstop
 endtry

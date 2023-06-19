@@ -3,7 +3,8 @@
 "
 " SPDX-License-Identifier: CC0-1.0
 "
-" Written in 2012, 2016, 2019-2021 by Lawrence Velazquez <vq@larryv.me>.
+" Written in 2012, 2016, 2019-2021, 2023 by Lawrence Velazquez
+" <vq@larryv.me>.
 "
 " To the extent possible under law, the author has dedicated all
 " copyright and related and neighboring rights to this software to the
@@ -31,7 +32,7 @@ set showbreak&
 " without +eval that *still* produces an error.  (To avoid E484 when
 " +eval is absent, create an empty, readable ~/.gvimrc.local file.)
 silent! execute 'try'
-    source ~/.gvimrc.local
+	source ~/.gvimrc.local
 silent! catch /\m\C^Vim(source):E484:/
 silent! endtry
 

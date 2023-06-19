@@ -26,33 +26,33 @@ set printoptions+=paper:letter
 
 " Use non-ASCII characters in options, where useful.
 if has('multi_byte')
-    let g:multibyte_optvals = {'latin1': {}, 'utf-8': {}}
+	let g:multibyte_optvals = {'latin1': {}, 'utf-8': {}}
 
-    " ----- listchars -----
+	" ----- listchars -----
 
-    let g:multibyte_optvals['latin1'].listchars = &listchars
+	let g:multibyte_optvals['latin1'].listchars = &listchars
 
-    " Use raw bytes to avoid assumptions about the current 'encoding'.
-    let s:lcs = "eol:\xc2\xb6"              " U+00B6 PILCROW SIGN
-    let s:lcs .= ",trail:\xc2\xb7"          " U+00B7 MIDDLE DOT
-    let s:lcs .= ",extends:\xe2\x86\x92"    " U+2192 RIGHTWARDS ARROW
-    let s:lcs .= ",precedes:\xe2\x86\x90"   " U+2190 LEFTWARDS ARROW
-    let s:lcs .= ",nbsp:\xc2\xb7"           " U+00B7 MIDDLE DOT
-    " U+2192 RIGHTWARDS ARROW, U+23AF HORIZONTAL LINE EXTENSION
-    if v:version > 801 || (v:version == 801 && has('patch759'))
-        let s:lcs .= ",tab:\xe2\x8e\xaf\xe2\x8e\xaf\xe2\x86\x92"
-    else
-        let s:lcs .= ",tab:\xe2\x86\x92\xe2\x8e\xaf"
-    endif
+	" Use raw bytes to avoid assumptions about the current 'encoding'.
+	let s:lcs = "eol:\xc2\xb6"              " U+00B6 PILCROW SIGN
+	let s:lcs .= ",trail:\xc2\xb7"          " U+00B7 MIDDLE DOT
+	let s:lcs .= ",extends:\xe2\x86\x92"    " U+2192 RIGHTWARDS ARROW
+	let s:lcs .= ",precedes:\xe2\x86\x90"   " U+2190 LEFTWARDS ARROW
+	let s:lcs .= ",nbsp:\xc2\xb7"           " U+00B7 MIDDLE DOT
+	" U+2192 RIGHTWARDS ARROW, U+23AF HORIZONTAL LINE EXTENSION
+	if v:version > 801 || (v:version == 801 && has('patch759'))
+		let s:lcs .= ",tab:\xe2\x8e\xaf\xe2\x8e\xaf\xe2\x86\x92"
+	else
+		let s:lcs .= ",tab:\xe2\x86\x92\xe2\x8e\xaf"
+	endif
 
-    let g:multibyte_optvals['utf-8'].listchars = s:lcs
-    unlet s:lcs
+	let g:multibyte_optvals['utf-8'].listchars = s:lcs
+	unlet s:lcs
 
-    " ----- showbreak -----
+	" ----- showbreak -----
 
-    " U+2192 RIGHTWARDS ARROW
-    if has('linebreak') && !has('gui_running')
-        let g:multibyte_optvals['latin1'].showbreak = &showbreak
-        let g:multibyte_optvals['utf-8'].showbreak = "\xe2\x86\x92 "
-    endif
+	" U+2192 RIGHTWARDS ARROW
+	if has('linebreak') && !has('gui_running')
+		let g:multibyte_optvals['latin1'].showbreak = &showbreak
+		let g:multibyte_optvals['utf-8'].showbreak = "\xe2\x86\x92 "
+	endif
 endif

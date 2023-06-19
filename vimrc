@@ -3,7 +3,8 @@
 "
 " SPDX-License-Identifier: CC0-1.0
 "
-" Written in 2012-2016, 2019-2021 by Lawrence Velazquez <vq@larryv.me>.
+" Written in 2012-2016, 2019-2021, 2023 by Lawrence Velazquez
+" <vq@larryv.me>.
 "
 " To the extent possible under law, the author has dedicated all
 " copyright and related and neighboring rights to this software to the
@@ -24,10 +25,10 @@ silent! augroup END
 " ---------- PATHOGEN ----------
 
 if !has('packages')
-    runtime pack/versioned/opt/vim-pathogen/autoload/pathogen.vim
-    if exists('*pathogen#infect')
-        execute pathogen#infect()
-    endif
+	runtime pack/versioned/opt/vim-pathogen/autoload/pathogen.vim
+	if exists('*pathogen#infect')
+		execute pathogen#infect()
+	endif
 endif
 
 
@@ -35,7 +36,7 @@ endif
 
 " Enhance the '%' Normal-mode command [1].
 if has('packages')
-    packadd! matchit
+	packadd! matchit
 endif
 
 silent! filetype plugin indent on
@@ -51,7 +52,7 @@ set softtabstop=4
 " because it leaves a value of 0.  (If Vim has that patch but lacks
 " +eval, set 'softtabstop' in ~/.vimrc.local.)
 if v:version > 703 || (v:version == 703 && has('patch693'))
-    set softtabstop=-1
+	set softtabstop=-1
 endif
 
 " Break long lines, but with restrictions.
@@ -101,8 +102,8 @@ silent! set listchars+=tab:-->  " Needs patch 8.1.0759.
 set nomodeline
 set modelines=0
 if v:version > 700 || (v:version == 700 && has('patch234') && has('patch235'))
-    set modeline&
-    set modelines&
+	set modeline&
+	set modelines&
 endif
 
 " Enable the command-line completion menu.
@@ -113,7 +114,7 @@ set wildmenu
 " +eval that *still* produces an error.  (To avoid E484 when +eval is
 " absent, create an empty, readable ~/.vimrc.local file.)
 silent! execute 'try'
-    source ~/.vimrc.local
+	source ~/.vimrc.local
 silent! catch /\m\C^Vim(source):E484:/
 silent! endtry
 
@@ -125,7 +126,7 @@ silent! endtry
 " make terminal-specific tweaks first, if necessary [3].  (If colors are
 " available but Vim lacks +eval, enable highlighting in ~/.vimrc.local.)
 if has('syntax') && !has('gui_running') && &t_Co > 2
-    syntax enable
+	syntax enable
 endif
 
 " If ~/.vimrc.local created the global variable 'multibyte_optvals',
@@ -134,33 +135,33 @@ endif
 " (This is controlled by ~/.vimrc.local because I don't want to use
 " non-ASCII characters in contexts where they're rendered poorly.)
 if has('multi_byte')
-    if exists('g:multibyte_optvals')
-        let s:multibyte_optvals = g:multibyte_optvals
-        unlet g:multibyte_optvals
+	if exists('g:multibyte_optvals')
+		let s:multibyte_optvals = g:multibyte_optvals
+		unlet g:multibyte_optvals
 
-        " Weed out unrecognized option names.
-        call map(s:multibyte_optvals, 'filter(v:val, "exists(''&'' . v:key)")')
+		" Weed out unrecognized option names.
+		call map(s:multibyte_optvals, 'filter(v:val, "exists(''&'' . v:key)")')
 
-        function! s:EncodingChangedHandler() abort
-            let l:optvals = get(s:multibyte_optvals, &encoding,
-                        \       get(s:multibyte_optvals, 'latin1',
-                        \           {}))
-            for [l:opt, l:val] in items(l:optvals)
-                if [eval('&l:' . l:opt)] ==# [eval('&g:' . l:opt)]
-                    execute 'let &' . l:opt . ' = l:val'
-                else
-                    " Something else set the local value, so let it be.
-                    execute 'let &g:' . l:opt . ' = l:val'
-                endif
-            endfor
-        endfunction
+		function! s:EncodingChangedHandler() abort
+			let l:optvals = get(s:multibyte_optvals, &encoding,
+			            \       get(s:multibyte_optvals, 'latin1',
+			            \           {}))
+			for [l:opt, l:val] in items(l:optvals)
+				if [eval('&l:' . l:opt)] ==# [eval('&g:' . l:opt)]
+					execute 'let &' . l:opt . ' = l:val'
+				else
+					" Something else set the local value, so let it be.
+					execute 'let &g:' . l:opt . ' = l:val'
+				endif
+			endfor
+		endfunction
 
-        call s:EncodingChangedHandler()
+		call s:EncodingChangedHandler()
 
-        if has('autocmd')
-            autocmd vimrc EncodingChanged * call s:EncodingChangedHandler()
-        endif
-    endif
+		if has('autocmd')
+			autocmd vimrc EncodingChanged * call s:EncodingChangedHandler()
+		endif
+	endif
 endif
 
 

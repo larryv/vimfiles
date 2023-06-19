@@ -3,7 +3,7 @@
 "
 " SPDX-License-Identifier: CC0-1.0
 "
-" Written in 2016, 2019, 2021-2022 by Lawrence Velazquez <vq@larryv.me>.
+" Written in 2016, 2019, 2021-2023 by Lawrence Velazquez <vq@larryv.me>.
 "
 " To the extent possible under law, the author has dedicated all
 " copyright and related and neighboring rights to this software to the
@@ -21,10 +21,10 @@
 setlocal expandtab
 setlocal shiftwidth=4
 try
-    " Introduced in 7.3.693
-    setlocal softtabstop=-1
+	" Introduced in 7.3.693
+	setlocal softtabstop=-1
 catch /\m\C^Vim(setlocal):E487:/
-    let &l:softtabstop = &l:shiftwidth ? &l:shiftwidth : &l:tabstop
+	let &l:softtabstop = &l:shiftwidth ? &l:shiftwidth : &l:tabstop
 endtry
 
 

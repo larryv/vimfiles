@@ -44,17 +44,6 @@ silent! filetype plugin indent on
 " Use vi-compatible backspacing in defiance of MacVim and macOS's vim.
 set backspace&
 
-" Default to four spaces for indenting.
-set expandtab
-set shiftwidth=4
-set softtabstop=4
-" Can't use 'set softtabstop=-1' without patch 7.3.693, even silently,
-" because it leaves a value of 0.  (If Vim has that patch but lacks
-" +eval, set 'softtabstop' in ~/.vimrc.local.)
-if v:version > 703 || (v:version == 703 && has('patch693'))
-	set softtabstop=-1
-endif
-
 " Break long lines, but with restrictions.
 set textwidth=72
 set formatoptions+=l1

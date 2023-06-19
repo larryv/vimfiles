@@ -16,12 +16,3 @@
 
 
 setlocal nospell
-
-" Indent with tabs because `git config` does.
-setlocal noexpandtab
-try
-	" Introduced in 7.3.629.
-	setlocal shiftwidth=0
-catch /\m\C^Vim(setlocal):E487:/
-	let &l:shiftwidth = &tabstop
-endtry

@@ -113,6 +113,17 @@ Error-checking is omitted for brevity.
 
     -   If using [an `+eval`-less Vim][14]:
 
+        -   If `encoding` has a suitable value, use non-ASCII characters
+            for certain options by sourcing one of the following files
+            from `${vimfiles?}/vimrc.local`:
+
+            -   `${vimfiles?}/set_opts.utf-8.vim`
+            -   One day there might be another.  But not today.
+
+            ```vim
+            runtime set_opts.utf-8.vim
+            ```
+
         -   If using Vim 7.1 or later or 7.0 with patches [234][15] and
             [235][16], reenable modelines in `${vimfiles?}/vimrc.local`.
             They are disabled by default to mitigate [CVE-2007-2438][17].

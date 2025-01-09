@@ -115,7 +115,8 @@ Error-checking is omitted for brevity.
 
         -   If `encoding` has a suitable value, use non-ASCII characters
             for certain options by sourcing one of the following files
-            from `${vimfiles?}/vimrc.local`:
+            from `${vimfiles?}/vimrc.local`, `${vimfiles?}/gvimrc.local`,
+            or both:
 
             -   `${vimfiles?}/set_opts.utf-8.vim`
             -   One day there might be another.  But not today.

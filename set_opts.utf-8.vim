@@ -23,9 +23,9 @@
 "    	→ U+2192 RIGHTWARDS ARROW (0xE2 0x86 0x92)
 "    	⎯ U+23AF HORIZONTAL LINE EXTENSION (0xE2 0x8E 0xAF)
 "
-" Intended to be sourced by vimrc.local; for details,
-" see vimrc.local.sample.local.sample.  Sync with vimrc
-" as necessary.
+" Intended to be sourced by vimrc.local and gvimrc.local; for details,
+" see vimrc.local.sample and gvimrc.local.sample.  Sync with vimrc and
+" gvimrc as necessary.
 
 
 " Enhance list mode.  Appending a duplicate 'tab:' is okay; it just

@@ -24,10 +24,10 @@ silent! colorscheme solarized
 " When I use paper, I use patriotic American paper.
 set printoptions+=paper:letter
 
-" Use non-ASCII characters for certain options.  Do this locally
-" because the characters don't look great in
+" Use non-ASCII characters for certain options.  Do this locally (and
+" separately for the GUI) because the characters don't look great in
 " some fonts/terminals/whatever.  (If +eval is unavailable, comment out
 " the 'if' and 'endif' lines.)
-if &encoding ==? 'utf-8'
+if !has('gui_running') && &encoding ==? 'utf-8'
 	runtime set_opts.utf-8.vim
 endif

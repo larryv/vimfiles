@@ -22,13 +22,15 @@ set guioptions-=T
 " Show inactive menu items to aid discoverability.
 set guioptions+=g
 
-" Show absolute line numbers in the left gutter instead of prefixing
-" soft-wrapped lines.
-set number
-set showbreak&
-
 " Apply local settings, if any.
 runtime gvimrc.local
+
+" Show absolute line numbers in the left gutter instead of prefixing
+" soft-wrapped lines.  Do this down here so gvimrc.local can share
+" set_opts.utf-8.vim with vimrc.local instead of doing its own thing
+" just to avoid setting 'showbreak' again.
+set number
+set showbreak&
 
 " Do this down here to let gvimrc.local make tweaks first, if necessary
 " (<https://vimhelp.org/syntax.txt.html#xterm-color>).  The GUI always

@@ -4,7 +4,8 @@
 
     SPDX-License-Identifier: CC0-1.0
 
-    Written in 2020-2021, 2023 by Lawrence Velazquez <vq@larryv.me>.
+    Written in 2020-2021, 2023, 2025 by Lawrence Velazquez
+    <vq@larryv.me>.
 
     To the extent possible under law, the author has dedicated all
     copyright and related and neighboring rights to this software to the
@@ -51,17 +52,17 @@ Error-checking is omitted for brevity.
     -   Otherwise:
 
         ```sh
-        git clone https://github.com/larryv/vimfiles.git ~/.vim \
-            && cd ~/.vim \
-            && git submodule update --init --recursive
+        git clone https://github.com/larryv/vimfiles.git ~/.vim &&
+        cd ~/.vim &&
+        git submodule update --init --recursive
         ```
 
     Alternately, clone it somewhere else and create `$HOME/.vim` as
     a link to it.
 
     ```sh
-    git clone --recurse-submodules https://github.com/larryv/vimfiles.git /somewhere/else \
-        && ln -s /somewhere/else ~/.vim
+    git clone --recurse-submodules https://github.com/larryv/vimfiles.git /somewhere/else &&
+    ln -s /somewhere/else ~/.vim
     ```
 
 2.  Certain uncommon setups require additional steps.

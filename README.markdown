@@ -65,7 +65,8 @@ Error-checking is omitted for brevity.
         ```sh
         git clone https://github.com/larryv/vimfiles.git "${vimfiles?}" &&
         CDPATH= cd -- "${vimfiles?}" &&
-        git submodule update --init --recursive
+        git submodule update --init &&
+        git submodule foreach git submodule update --init
         ```
 
     Alternatively, clone it somewhere else and create `${vimfiles?}` as

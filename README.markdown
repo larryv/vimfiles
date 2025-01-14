@@ -34,47 +34,58 @@ Here begins a series of notes to myself.
 A Unix-like operating system and Bourne-adjacent shell are assumed.
 Error-checking is omitted for brevity.
 
-1.  Clone this repository to `$HOME/.vim`, which shouldn't exist yet.
+1.  Decide where to put the configuration.  The most compatible location
+    is `$HOME/.vim`, which has headed the default Unix `runtimepath`
+    since `runtimepath` was introduced in Vim 6.0.  Vim 9.2 and later
+    and Vim 9.1 with patches [327][2], [337][3], and [345][4] can also
+    use [`$XDG_CONFIG_HOME/vim` or `$HOME/.config/vim`][5].
+
+    The rest of this document uses "`${vimfiles?}`" to stand in for the
+    chosen path.  [In example commands][6], it can be replaced with the
+    path directly or used as-is after setting the `vimfiles` variable to
+    the path.
+
+2.  Clone this repository to `${vimfiles?}`, which shouldn't exist yet.
     If it does, delete it or move it somewhere else first.
 
     -   Git 1.7.4.1 or later:
 
         ```sh
-        git clone --recurse-submodules https://github.com/larryv/vimfiles.git ~/.vim
+        git clone --recurse-submodules https://github.com/larryv/vimfiles.git "${vimfiles?}"
         ```
 
     -   Git 1.6.5 or later:
 
         ```sh
-        git clone --recursive https://github.com/larryv/vimfiles.git ~/.vim
+        git clone --recursive https://github.com/larryv/vimfiles.git "${vimfiles?}"
         ```
 
     -   Otherwise:
 
         ```sh
-        git clone https://github.com/larryv/vimfiles.git ~/.vim &&
-        cd ~/.vim &&
+        git clone https://github.com/larryv/vimfiles.git "${vimfiles?}" &&
+        CDPATH= cd -- "${vimfiles?}" &&
         git submodule update --init --recursive
         ```
 
-    Alternatively, clone it somewhere else and create `$HOME/.vim` as
+    Alternatively, clone it somewhere else and create `${vimfiles?}` as
     a link to it.
 
     ```sh
     git clone --recurse-submodules https://github.com/larryv/vimfiles.git /somewhere/else &&
-    ln -s /somewhere/else ~/.vim
+    ln -s /somewhere/else "${vimfiles?}"
     ```
 
 3.  Take additional steps as required or desired.
 
     -   If using Vim 7.2 or earlier or 7.3 without [patch 1178][13],
         create `$HOME/.vimrc` and `$HOME/.gvimrc` as links to
-        `.vim/vimrc` and `.vim/gvimrc`, respectively,
+        `${vimfiles?}/vimrc` and `${vimfiles?}/gvimrc`, respectively,
         so Vim has something to read.
 
         ```sh
-        ln -s .vim/vimrc ~/.vimrc
-        ln -s .vim/gvimrc ~/.gvimrc
+        ln -s -- "${vimfiles?}/vimrc" ~/.vimrc
+        ln -s -- "${vimfiles?}/gvimrc" ~/.gvimrc
         ```
 
     -   If using [an `+eval`-less Vim][14]:
@@ -104,12 +115,12 @@ customizations described here are not tracked by Git.)
 
 To enact settings that shouldn't go into version control, create and
 populate `$HOME/.vimrc.local` and `$HOME/.gvimrc.local`.  These are
-sourced at or near the ends of `$HOME/.vim/vimrc` and
-`$HOME/.vim/gvimrc`, so they can build on or override settings from
+sourced at or near the ends of `${vimfiles?}/vimrc` and
+`${vimfiles?}/gvimrc`, so they can build on or override settings from
 those files.  (See `vimrc.local.sample` and `gvimrc.local.sample`.)
 
 To use packages that are not suitable for the repository, place them
-anywhere in `$HOME/.vim/pack` other than `versioned`.
+anywhere in `${vimfiles?}/pack` other than `versioned`.
 
 
 ## Development ##
@@ -192,6 +203,12 @@ United States of America and distributed without any warranty.
 
 
  [1]: https://www.vim.org
+ [2]: https://github.com/vim/vim/commit/c9df1fb35a1866901c32df37dd39c8b39dbdb64a
+ [3]: https://github.com/vim/vim/commit/d1068a2bb09fd3b9d117d832105bf10dd5e48e2f
+ [4]: https://github.com/vim/vim/commit/a34ba821076476a68e0e579723d68e896f771ba6
+ [5]: https://vimhelp.org/starting.txt.html#xdg-base-dir
+ [6]: https://www.vidarholen.net/contents/blog/?p=958
+   "${var?} and &&: Two simple tips for shell commands in tech docs - Vidar's Blog"
 [13]: https://ftp.nluug.nl/pub/vim/patches/7.3/7.3.1178
 [14]: https://vimhelp.org/eval.txt.html#no-eval-feature
 [15]: https://ftp.nluug.nl/pub/vim/patches/7.0/7.0.234

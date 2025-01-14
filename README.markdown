@@ -45,22 +45,22 @@ Error-checking is omitted for brevity.
     path directly or used as-is after setting the `vimfiles` variable to
     the path.
 
-2.  Clone this repository to `${vimfiles?}`, which shouldn't exist yet.
+2.  Download this repository to `${vimfiles?}`, which shouldn't exist yet.
     If it does, delete it or move it somewhere else first.
 
-    -   Git 1.7.4.1 or later:
+    -   [Git 1.7.4.1][7] or later:
 
         ```sh
         git clone --recurse-submodules https://github.com/larryv/vimfiles.git "${vimfiles?}"
         ```
 
-    -   Git 1.6.5 or later:
+    -   [Git 1.6.5][8] or later:
 
         ```sh
         git clone --recursive https://github.com/larryv/vimfiles.git "${vimfiles?}"
         ```
 
-    -   Otherwise:
+    -   [Git 1.6.1][9] or later:
 
         ```sh
         git clone https://github.com/larryv/vimfiles.git "${vimfiles?}" &&
@@ -69,7 +69,19 @@ Error-checking is omitted for brevity.
         git submodule foreach git submodule update --init
         ```
 
-    Alternatively, clone it somewhere else and create `${vimfiles?}` as
+    -   Git 1.5.6 or later: exercise for the reader, who will have to do
+        without `git submodule foreach`.
+
+    -   Git 1.5.3 or later: exercise for the reader, who will have to
+        [do without `git submodule update --init`][10].
+
+    -   Primordial Git: exercise for the reader, who will have to [do
+        without `git submodule`][11].
+
+    -   No Git: exercise for the reader, who will have to [do without
+        `git`][12].
+
+    Alternatively, put it somewhere else and create `${vimfiles?}` as
     a link to it.
 
     ```sh
@@ -210,6 +222,18 @@ United States of America and distributed without any warranty.
  [5]: https://vimhelp.org/starting.txt.html#xdg-base-dir
  [6]: https://www.vidarholen.net/contents/blog/?p=958
    "${var?} and &&: Two simple tips for shell commands in tech docs - Vidar's Blog"
+ [7]: https://github.com/git/git/commit/ccdd3da6527ca7d8d731e691b9ff0f9b8657298e
+   "clone: Add the --recurse-submodules option as alias for --recursive - git/git@ccdd3da - GitHub"
+ [8]: https://github.com/git/git/commit/e7fed18a89fae97655687e19f13cd802d8d70845
+   "git clone: Add --recursive to automatically checkout (nested) submodules - git/git@e7fed18 - GitHub"
+ [9]: https://github.com/git/git/commit/19a31f9c1a6b18abd8a7f20d616516afca36a6a3
+   "git-submodule - Add 'foreach' subcommand - git/git@19a31f9 - GitHub"
+[10]: https://github.com/git/git/commit/be4d2c83b68a96285cc05036add4d64d324e52d9
+   "submodule update: add convenience option --init - git/git@be4d2c8 - GitHub"
+[11]: https://github.com/git/git/commit/70c7ac22de681a83621bda03e676348170c8d8a2
+   "Add git-submodule command - git/git@70c7ac2 - GitHub"
+[12]: https://docs.github.com/en/repositories/working-with-files/using-files/downloading-source-code-archives
+   "Downloading source code archives - GitHub Docs"
 [13]: https://ftp.nluug.nl/pub/vim/patches/7.3/7.3.1178
 [14]: https://vimhelp.org/eval.txt.html#no-eval-feature
 [15]: https://ftp.nluug.nl/pub/vim/patches/7.0/7.0.234

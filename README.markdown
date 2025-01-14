@@ -67,7 +67,7 @@ Error-checking is omitted for brevity.
 
 2.  Certain uncommon setups require additional steps.
 
-    -   If using Vim 7.2 or earlier or 7.3 without [patch 1178][2],
+    -   If using Vim 7.2 or earlier or 7.3 without [patch 1178][13],
         create `$HOME/.vimrc` and `$HOME/.gvimrc` as links to
         `.vim/vimrc` and `.vim/gvimrc`.
 
@@ -76,7 +76,7 @@ Error-checking is omitted for brevity.
         ln -s .vim/gvimrc ~/.gvimrc
         ```
 
-    -   If using [an `+eval`-less Vim][3]:
+    -   If using [an `+eval`-less Vim][14]:
 
         -   Make sure `$HOME/.vimrc.local` and `$HOME/.gvimrc.local`
             exist, even if one or both are empty.  This suppresses
@@ -86,9 +86,9 @@ Error-checking is omitted for brevity.
             touch ~/.vimrc.local ~/.gvimrc.local
             ```
 
-        -   If using Vim 7.1 or later or 7.0 with patches [234][4] and
-            [235][5], reenable modelines in `$HOME/.vimrc.local`.  They
-            are disabled by default to mitigate [CVE-2007-2438][6].
+        -   If using Vim 7.1 or later or 7.0 with patches [234][15] and
+            [235][16], reenable modelines in `$HOME/.vimrc.local`.  They
+            are disabled by default to mitigate [CVE-2007-2438][17].
 
             ```vim
             set modeline&
@@ -113,14 +113,14 @@ anywhere in `$HOME/.vim/pack` other than `versioned`.
 
 ## Development ##
 
-Look to the [Google Vimscript Guide][7].  Although it's mostly about
+Look to the [Google Vimscript Guide][18].  Although it's mostly about
 writing plugins, it contains some recommendations that are useful here,
-especially under "[Portability][8]", "[Variables][9]", "[Strings][10]",
-"[Settings][11]", and "[Functions][12]".
+especially under "[Portability][19]", "[Variables][20]", "[Strings][21]",
+"[Settings][22]", and "[Functions][23]".
 
 Maintain portability across Vim versions and feature sets; the baseline
 is Vim 7.2 with the "tiny" feature set.  The most disruptive requirement
-is probably accommodating a [lack of `+eval`][3] (outside of plugins,
+is probably accommodating a [lack of `+eval`][14] (outside of plugins,
 which are not used at all in that case).
 
 -   Establish portable defaults first, then override them later if
@@ -173,7 +173,7 @@ which are not used at all in that case).
 
 -   Given two equivalent constructs, prefer the one that works with
     older versions of Vim.  For example, `has('patch-8.1.0759')` is nice
-    but requires patch 7.4.237; do it [the long way][13] instead.
+    but requires patch 7.4.237; do it [the long way][24] instead.
 
     ```vim
     if v:version > 801 || (v:version == 801 && has('patch0759'))
@@ -186,23 +186,23 @@ which are not used at all in that case).
 
 To the extent possible under law, [the author has dedicated all
 copyright and related and neighboring rights to this software to the
-public domain worldwide][14].  This software is published from the
+public domain worldwide][25].  This software is published from the
 United States of America and distributed without any warranty.
 
 
  [1]: https://www.vim.org
- [2]: https://ftp.nluug.nl/pub/vim/patches/7.3/7.3.1178
- [3]: https://vimhelp.org/eval.txt.html#no-eval-feature
- [4]: https://ftp.nluug.nl/pub/vim/patches/7.0/7.0.234
- [5]: https://ftp.nluug.nl/pub/vim/patches/7.0/7.0.235
- [6]: https://nvd.nist.gov/vuln/detail/CVE-2007-2438
+[13]: https://ftp.nluug.nl/pub/vim/patches/7.3/7.3.1178
+[14]: https://vimhelp.org/eval.txt.html#no-eval-feature
+[15]: https://ftp.nluug.nl/pub/vim/patches/7.0/7.0.234
+[16]: https://ftp.nluug.nl/pub/vim/patches/7.0/7.0.235
+[17]: https://nvd.nist.gov/vuln/detail/CVE-2007-2438
    "National Vulnerability Database - CVE-2007-2438"
- [7]: https://google.github.io/styleguide/vimscriptfull.xml
- [8]: https://google.github.io/styleguide/vimscriptfull.xml#Portability
- [9]: https://google.github.io/styleguide/vimscriptfull.xml#Variables
-[10]: https://google.github.io/styleguide/vimscriptfull.xml#Strings
-[11]: https://google.github.io/styleguide/vimscriptfull.xml#Settings
-[12]: https://google.github.io/styleguide/vimscriptfull.xml#Functions
-[13]: https://vimhelp.org/eval.txt.html#has-patch
-[14]: https://creativecommons.org/publicdomain/zero/1.0/
+[18]: https://google.github.io/styleguide/vimscriptfull.xml
+[19]: https://google.github.io/styleguide/vimscriptfull.xml#Portability
+[20]: https://google.github.io/styleguide/vimscriptfull.xml#Variables
+[21]: https://google.github.io/styleguide/vimscriptfull.xml#Strings
+[22]: https://google.github.io/styleguide/vimscriptfull.xml#Settings
+[23]: https://google.github.io/styleguide/vimscriptfull.xml#Functions
+[24]: https://vimhelp.org/eval.txt.html#has-patch
+[25]: https://creativecommons.org/publicdomain/zero/1.0/
    "Creative Commons - CC0 1.0 Universal Public Domain Dedication"

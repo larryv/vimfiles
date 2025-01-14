@@ -27,16 +27,10 @@ set guioptions+=g
 set number
 set showbreak&
 
-" Avoid 'silent! source ~/.gvimrc.local' because that masks errors from
-" within ~/.gvimrc.local itself.  Can't use 'silent! try' because
-" without +eval that *still* produces an error.  (To avoid E484 when
-" +eval is absent, create an empty, readable ~/.gvimrc.local file.)
-silent! execute 'try'
-	source ~/.gvimrc.local
-silent! catch /\m\C^Vim(source):E484:/
-silent! endtry
+" Apply local settings, if any.
+runtime gvimrc.local
 
-" Do this down here to let ~/.gvimrc.local make tweaks first, if
-" necessary (<https://vimhelp.org/syntax.txt.html#xterm-color>).
-" The GUI always has colors.
+" Do this down here to let gvimrc.local make tweaks first, if necessary
+" (<https://vimhelp.org/syntax.txt.html#xterm-color>).  The GUI always
+" has colors.
 silent! syntax enable

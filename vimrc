@@ -92,7 +92,7 @@ silent! set listchars+=tab:-->  " Needs patch 8.1.0759.
 set nomodeline
 set modelines=0
 if v:version > 700 || (v:version == 700 && has('patch234') && has('patch235'))
-	" If +eval is unavailable, reset these in ~/.vimrc.local.
+	" If +eval is unavailable, reset these in vimrc.local.
 	set modeline&
 	set modelines&
 endif
@@ -100,31 +100,25 @@ endif
 " Enable the command-line completion menu.
 set wildmenu
 
-" Avoid 'silent! source ~/.vimrc.local' because that masks errors from
-" within ~/.vimrc.local itself.  Can't use 'silent! try' because without
-" +eval that *still* produces an error.  (To avoid E484 when +eval is
-" absent, create an empty, readable ~/.vimrc.local file.)
-silent! execute 'try'
-	source ~/.vimrc.local
-silent! catch /\m\C^Vim(source):E484:/
-silent! endtry
+" Apply local settings, if any.
+runtime vimrc.local
 
 
 " ---------- EPILOGUE ----------
 
 " Enable syntax highlighting if colors are available.  Do this down here
-" to let ~/.vimrc.local make tweaks first, if necessary [3].  (The GUI is
-" handled by gvimrc to allow ~/.gvimrc.local to make its own tweaks.)
+" to let vimrc.local make tweaks first, if necessary [3].  (The GUI is
+" handled by gvimrc to allow gvimrc.local to make its own tweaks.)
 " (If colors are available but Vim lacks +eval, enable highlighting in
-" ~/.vimrc.local.)
+" vimrc.local.)
 if has('syntax') && !has('gui_running') && &t_Co > 2
 	syntax enable
 endif
 
-" If ~/.vimrc.local created the global variable 'multibyte_optvals',
+" If vimrc.local created the global variable 'multibyte_optvals',
 " then use it to automatically set options according to 'encoding'.  For
 " an example of the required data structure, see vimrc.local.sample.
-" (This is controlled by ~/.vimrc.local because I don't want to use
+" (This is controlled by vimrc.local because I don't want to use
 " non-ASCII characters in contexts where they're rendered poorly.)
 if has('multi_byte')
 	if exists('g:multibyte_optvals')

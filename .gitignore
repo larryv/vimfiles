@@ -2,5 +2,9 @@
 /pack/*
 !/pack/versioned/
 
+# Local settings
+/gvimrc.local
+/vimrc.local
+
 # Spell files
 spell/*.spl

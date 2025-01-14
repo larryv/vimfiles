@@ -91,6 +91,16 @@ Error-checking is omitted for brevity.
 
 3.  Take additional steps as required or desired.
 
+    -   Ensure `vimrc.local` and `gvimrc.local` exist in `${vimfiles?}`,
+        preventing the `:runtime` commands in `${vimfiles?}/vimrc` and
+        `${vimfiles?}/gvimrc` from sourcing identically named files in
+        other `runtimepath` directories.  (The chances that such files
+        are present is negligible but nonzero.)
+
+        ```sh
+        touch -- "${vimfiles?}/vimrc.local" "${vimfiles?}/gvimrc.local"
+        ```
+
     -   If using Vim 7.2 or earlier or 7.3 without [patch 1178][13],
         create `$HOME/.vimrc` and `$HOME/.gvimrc` as links to
         `${vimfiles?}/vimrc` and `${vimfiles?}/gvimrc`, respectively,
@@ -103,17 +113,9 @@ Error-checking is omitted for brevity.
 
     -   If using [an `+eval`-less Vim][14]:
 
-        -   Make sure `$HOME/.vimrc.local` and `$HOME/.gvimrc.local`
-            exist, even if one or both are empty.  This suppresses
-            a harmless but vexing "Can't open file" message.
-
-            ```sh
-            touch ~/.vimrc.local ~/.gvimrc.local
-            ```
-
         -   If using Vim 7.1 or later or 7.0 with patches [234][15] and
-            [235][16], reenable modelines in `$HOME/.vimrc.local`.  They
-            are disabled by default to mitigate [CVE-2007-2438][17].
+            [235][16], reenable modelines in `${vimfiles?}/vimrc.local`.
+            They are disabled by default to mitigate [CVE-2007-2438][17].
 
             ```vim
             set modeline&
@@ -127,8 +129,8 @@ Error-checking is omitted for brevity.
 customizations described here are not tracked by Git.)
 
 To enact settings that shouldn't go into version control, create and
-populate `$HOME/.vimrc.local` and `$HOME/.gvimrc.local`.  These are
-sourced at or near the ends of `${vimfiles?}/vimrc` and
+populate `${vimfiles?}/vimrc.local` and `${vimfiles?}/gvimrc.local`.
+These are sourced at or near the ends of `${vimfiles?}/vimrc` and
 `${vimfiles?}/gvimrc`, so they can build on or override settings from
 those files.  (See `vimrc.local.sample` and `gvimrc.local.sample`.)
 

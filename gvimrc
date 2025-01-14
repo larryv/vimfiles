@@ -3,7 +3,7 @@
 "
 " SPDX-License-Identifier: CC0-1.0
 "
-" Written in 2012, 2016, 2019-2021, 2023 by Lawrence Velazquez
+" Written in 2012, 2016, 2019-2021, 2023, 2025 by Lawrence Velazquez
 " <vq@larryv.me>.
 "
 " To the extent possible under law, the author has dedicated all
@@ -22,8 +22,8 @@ set guioptions-=T
 " Show inactive menu items to aid discoverability.
 set guioptions+=g
 
-" Show absolute line numbers in the left gutter.  This makes prefixing
-" soft-wrapped lines largely pointless, so stop doing that.
+" Show absolute line numbers in the left gutter instead of prefixing
+" soft-wrapped lines.
 set number
 set showbreak&
 

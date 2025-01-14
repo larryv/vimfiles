@@ -34,16 +34,16 @@ Here begins a series of notes to myself.
 A Unix-like operating system and Bourne-adjacent shell are assumed.
 Error-checking is omitted for brevity.
 
-1.  Clone this repository at `$HOME/.vim`, which shouldn't exist yet.
-    If it does, delete it or move it somewhere else.
+1.  Clone this repository to `$HOME/.vim`, which shouldn't exist yet.
+    If it does, delete it or move it somewhere else first.
 
-    -   Git 1.7.4.1 and later:
+    -   Git 1.7.4.1 or later:
 
         ```sh
         git clone --recurse-submodules https://github.com/larryv/vimfiles.git ~/.vim
         ```
 
-    -   Git 1.6.5 and later:
+    -   Git 1.6.5 or later:
 
         ```sh
         git clone --recursive https://github.com/larryv/vimfiles.git ~/.vim
@@ -57,7 +57,7 @@ Error-checking is omitted for brevity.
         git submodule update --init --recursive
         ```
 
-    Alternately, clone it somewhere else and create `$HOME/.vim` as
+    Alternatively, clone it somewhere else and create `$HOME/.vim` as
     a link to it.
 
     ```sh
@@ -65,11 +65,12 @@ Error-checking is omitted for brevity.
     ln -s /somewhere/else ~/.vim
     ```
 
-2.  Certain uncommon setups require additional steps.
+3.  Take additional steps as required or desired.
 
     -   If using Vim 7.2 or earlier or 7.3 without [patch 1178][13],
         create `$HOME/.vimrc` and `$HOME/.gvimrc` as links to
-        `.vim/vimrc` and `.vim/gvimrc`.
+        `.vim/vimrc` and `.vim/gvimrc`, respectively,
+        so Vim has something to read.
 
         ```sh
         ln -s .vim/vimrc ~/.vimrc
@@ -101,7 +102,7 @@ Error-checking is omitted for brevity.
 (Obviously the working copy can be modified arbitrarily, but the
 customizations described here are not tracked by Git.)
 
-To add settings that are not suitable for the repository, create and
+To enact settings that shouldn't go into version control, create and
 populate `$HOME/.vimrc.local` and `$HOME/.gvimrc.local`.  These are
 sourced at or near the ends of `$HOME/.vim/vimrc` and
 `$HOME/.vim/gvimrc`, so they can build on or override settings from
@@ -142,8 +143,8 @@ which are not used at all in that case).
     other requirements, and fail loudly if those are not met.
 
     ```vim
-    silent! syntax enable         " Needs +syntax.
     silent! set formatoptions+=j  " Needs patch 7.3.541.
+    silent! syntax enable         " Needs +syntax.
     ```
 
 -   Use `if` to protect code that requires `+eval`; without `+eval`,

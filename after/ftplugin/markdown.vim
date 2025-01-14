@@ -3,7 +3,8 @@
 "
 " SPDX-License-Identifier: CC0-1.0
 "
-" Written in 2016, 2019, 2021-2023 by Lawrence Velazquez <vq@larryv.me>.
+" Written in 2016, 2019, 2021-2023, 2025 by Lawrence Velazquez
+" <vq@larryv.me>.
 "
 " To the extent possible under law, the author has dedicated all
 " copyright and related and neighboring rights to this software to the
@@ -15,8 +16,9 @@
 " <https://creativecommons.org/publicdomain/zero/1.0/>.
 
 
-" Indenting with four spaces is universally recognized
-" (https://brettterpstra.com/2015/08/24/write-better-markdown/#indentation).
+" https://brettterpstra.com/2015/08/24/write-better-markdown/#indentation
+" Indenting with four spaces is universally recognized.  So is indenting
+" with tabs, but I can't bring myself to take that step for prose.
 
 setlocal expandtab
 setlocal shiftwidth=4

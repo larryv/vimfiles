@@ -3,7 +3,7 @@
 "
 " SPDX-License-Identifier: CC0-1.0
 "
-" Written in 2012-2016, 2019-2021, 2023 by Lawrence Velazquez
+" Written in 2012-2016, 2019-2021, 2023, 2025 by Lawrence Velazquez
 " <vq@larryv.me>.
 "
 " To the extent possible under law, the author has dedicated all
@@ -34,11 +34,14 @@ endif
 
 " ---------- EDITING ----------
 
-" Enhance the '%' Normal-mode command [1].
+" Enhance the '%' Normal-mode command.
 if has('packages')
 	packadd! matchit
 endif
 
+" Enable filetype detection, plugins, and indent files.  All 'packadd!'
+" commands that register plugins with filetype detection scripts must
+" precede this command, or the scripts won't be loaded [1].
 silent! filetype plugin indent on
 
 " Use vi-compatible backspacing in defiance of MacVim and macOS's vim.
@@ -67,30 +70,29 @@ set showbreak=>\    " Sentinel comment to protect the trailing space.
 set ruler
 set showcmd
 
-" Incremental searching with highlighting.
+" Search incrementally, with highlighting.
 set hlsearch
 set incsearch
 
-" Spell checking.  (This can be disabled in after/ftplugin for filetypes
+" Check spelling.  (This can be disabled in after/ftplugin for filetypes
 " that are riddled with false positives because their syntax files don't
 " properly delineate where checking is and isn't appropriate.)
 set spell
 set spelllang=en_us
 
-" Display more than just EOL in list mode.  Appending a duplicate 'tab:'
-" is okay; it just supersedes the first one.
+" Enhance list mode.  Appending a duplicate 'tab:' is okay; it just
+" supersedes the first one.
 set listchars=eol:$,tab:>-,trail:~,extends:>,precedes:<,nbsp:~
 silent! set listchars+=tab:-->  " Needs patch 8.1.0759.
 
 
 " ---------- MISCELLANEOUS ----------
 
-" Disable modelines unless CVE-2007-2438 [2] has been addressed.  (If
-" Vim has the patches but lacks +eval, reset 'modeline' and 'modelines'
-" in ~/.vimrc.local.)
+" Disable modelines unless CVE-2007-2438 [2] has been patched.
 set nomodeline
 set modelines=0
 if v:version > 700 || (v:version == 700 && has('patch234') && has('patch235'))
+	" If +eval is unavailable, reset these in ~/.vimrc.local.
 	set modeline&
 	set modelines&
 endif
@@ -110,10 +112,11 @@ silent! endtry
 
 " ---------- EPILOGUE ----------
 
-" Enable syntax highlighting if colors are available.  Skip the GUI
-" because gvimrc handles that.  Do this down here to let ~/.vimrc.local
-" make terminal-specific tweaks first, if necessary [3].  (If colors are
-" available but Vim lacks +eval, enable highlighting in ~/.vimrc.local.)
+" Enable syntax highlighting if colors are available.  Do this down here
+" to let ~/.vimrc.local make tweaks first, if necessary [3].  (The GUI is
+" handled by gvimrc to allow ~/.gvimrc.local to make its own tweaks.)
+" (If colors are available but Vim lacks +eval, enable highlighting in
+" ~/.vimrc.local.)
 if has('syntax') && !has('gui_running') && &t_Co > 2
 	syntax enable
 endif
@@ -156,6 +159,6 @@ endif
 
 " ---------- REFERENCES ----------
 "
-"  1. https://vimhelp.org/usr_05.txt.html#matchit-install
+"  1. https://vimhelp.org/repeat.txt.html#%3Apackadd
 "  2. https://nvd.nist.gov/vuln/detail/CVE-2007-2438
 "  3. https://vimhelp.org/syntax.txt.html#xterm-color

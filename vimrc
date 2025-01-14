@@ -112,7 +112,7 @@ runtime vimrc.local
 " Enable syntax highlighting if colors are available.  Do this down here
 " to let vimrc.local make tweaks first, if necessary [3].  (The GUI is
 " handled by gvimrc to allow gvimrc.local to make its own tweaks.)
-if has('syntax') && !has('gui_running') && &t_Co > 2
+if !has('gui_running') && has('syntax') && &t_Co > 2
 	syntax enable
 endif
 

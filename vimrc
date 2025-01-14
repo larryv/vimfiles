@@ -42,7 +42,9 @@ endif
 " Enable filetype detection, plugins, and indent files.  All 'packadd!'
 " commands that register plugins with filetype detection scripts must
 " precede this command, or the scripts won't be loaded [1].
-silent! filetype plugin indent on
+if has('autocmd')
+	filetype plugin indent on
+endif
 
 " Use vi-compatible backspacing in defiance of MacVim and macOS's vim.
 set backspace=
@@ -110,8 +112,6 @@ runtime vimrc.local
 " Enable syntax highlighting if colors are available.  Do this down here
 " to let vimrc.local make tweaks first, if necessary [3].  (The GUI is
 " handled by gvimrc to allow gvimrc.local to make its own tweaks.)
-" (If colors are available but Vim lacks +eval, enable highlighting in
-" vimrc.local.)
 if has('syntax') && !has('gui_running') && &t_Co > 2
 	syntax enable
 endif

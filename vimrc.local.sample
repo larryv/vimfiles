@@ -19,7 +19,12 @@
 
 
 " https://ethanschoonover.com/solarized/
-silent! colorscheme solarized
+if 1
+	try
+		colorscheme solarized
+	catch /\m\C^Vim(colorscheme):E185:/
+	endtry
+endif
 
 " When I use paper, I use patriotic American paper.
 set printoptions+=paper:letter

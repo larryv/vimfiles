@@ -182,8 +182,8 @@ which are not used at all in that case).
     other requirements, and fail loudly if those are not met.
 
     ```vim
-    silent! set formatoptions+=j  " Needs patch 7.3.541.
-    silent! syntax enable         " Needs +syntax.
+    silent! set formatoptions+=j        " Needs patch 7.3.541.
+    silent! set guifont=Consolas:h12    " Needs the font to be available
     ```
 
 -   Use `if` to protect code that requires `+eval`; without `+eval`,

@@ -26,6 +26,12 @@ if 1
 	endtry
 endif
 
+" Reset modelines.  (Uncomment these ONLY if Vim is patched against
+" CVE-2007-2438 but lacks +eval; otherwise vimrc handles this.  See
+" README.markdown for details.)
+"set modeline&
+"set modelines&
+
 " When I use paper, I use patriotic American paper.
 set printoptions+=paper:letter
 

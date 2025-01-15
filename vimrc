@@ -45,7 +45,7 @@ endif
 silent! filetype plugin indent on
 
 " Use vi-compatible backspacing in defiance of MacVim and macOS's vim.
-set backspace&
+set backspace=
 
 " Break long lines, but with restrictions.
 set textwidth=72

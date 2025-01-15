@@ -126,8 +126,9 @@ Error-checking is omitted for brevity.
             ```
 
         -   If using Vim 7.1 or later or 7.0 with patches [234][15] and
-            [235][16], reenable modelines in `${vimfiles?}/vimrc.local`.
-            They are disabled by default to mitigate [CVE-2007-2438][17].
+            [235][16], reset default modeline settings in
+            `${vimfiles?}/vimrc.local`.  Modelines are disabled by
+            default to mitigate [CVE-2007-2438][17].
 
             ```vim
             set modeline&
@@ -174,7 +175,7 @@ which are not used at all in that case).
 
     ```vim
     set showbreak=>>>   " vimrc: Enable this by default.
-    set showbreak&      " gvimrc: Reset it in the GUI.
+    set showbreak=      " gvimrc: Clear it in the GUI.
     ```
 
 -   Use `silent!` to run most commands that don't need `+eval`, do have

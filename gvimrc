@@ -30,7 +30,7 @@ runtime gvimrc.local
 " set_opts.utf-8.vim with vimrc.local instead of doing its own thing
 " just to avoid setting 'showbreak' again.
 set number
-set showbreak&
+set showbreak=
 
 " Do this down here to let gvimrc.local make tweaks first, if necessary
 " (<https://vimhelp.org/syntax.txt.html#xterm-color>).  The GUI always

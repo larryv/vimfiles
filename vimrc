@@ -67,7 +67,7 @@ silent! set formatoptions+=p    " Needs patch 8.1.0728.
 " Soft-wrap only at certain characters, and prefix wrapped lines.  (Keep
 " synced with set_opts.utf-8.vim.)
 set linebreak
-set showbreak=>\    " Sentinel comment to protect the trailing space.
+set showbreak=->\   " Sentinel comment to protect the trailing space.
 
 " Enable ruler and show in-progress Normal-mode commands.
 set ruler

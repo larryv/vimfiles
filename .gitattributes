@@ -1,2 +1,6 @@
 # Normalize EOLs for text-ish files.
 * text=auto
+
+# Override GitHub's language detection.
+# https://github.com/github-linguist/linguist/blob/main/docs/overrides.md
+*vimrc.local.sample linguist-language=Vim-Script

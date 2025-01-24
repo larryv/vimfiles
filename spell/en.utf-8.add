@@ -2,10 +2,13 @@ API
 AppleScript
 Arq
 builtins
+conformant
+deduplicate
 discoverability
 dotfiles
 EagleFiler
 executables
+falsy
 filename
 globals
 holotype
@@ -48,6 +51,9 @@ timestamps
 tmux
 TOCTOU
 toolkits
+toolset
+truthy
+uncontrived
 URI
 Velázquez
 whitespace

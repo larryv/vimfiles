@@ -172,7 +172,7 @@ which are not used at all in that case).
 
     ```vim
     silent! autocmd!                    " Needs +autocmd.
-    silent! set guifont=Consolas:h12    " Needs the font to be available
+    silent! set guifont=Consolas:h12    " Needs the given font.
     ```
 
 -   Establish portable defaults first, then augment or override them
@@ -208,8 +208,8 @@ which are not used at all in that case).
     ```vim
     set softtabstop=4
     if v:version > 703 || v:version == 703 && has('patch693')
-        " If -1 is invalid, this throws an error but sets 'softtabstop'
-        " to 0 without warning.  Rude!
+        " If -1 is invalid, this throws an error but sets
+        " 'softtabstop' to 0 without warning.  Rude!
         set softtabstop=-1
     endif
     ```

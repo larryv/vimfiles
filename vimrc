@@ -53,13 +53,15 @@ set backspace=
 set textwidth=72
 set formatoptions+=l1
 
-" Manage comment leaders (e.g., '#' or '//') automatically.
+" Manage comment leaders (e.g., '#' or '//') automatically.  Patch
+" 7.3.541 required for 'j'.
 set formatoptions+=or
-silent! set formatoptions+=j    " Needs patch 7.3.541.
+silent! set formatoptions+=j
 
 " Use two spaces between sentences for compatibility with vi and Emacs.
+" Patch 8.1.0728 required for 'p'.
 set cpoptions+=J
-silent! set formatoptions+=p    " Needs patch 8.1.0728.
+silent! set formatoptions+=p
 
 
 " ---------- VIEWING ----------
@@ -83,10 +85,11 @@ set incsearch
 set spell
 set spelllang=en_us
 
-" Enhance list mode.  Appending a duplicate 'tab:' is okay; it just
-" supersedes the first one.  (Keep synced with set_opts.utf-8.vim.)
+" Enhance list mode.  Patch 8.1.0759 required for 'tab:xyz'.  (Keep
+" synced with set_opts.utf-8.vim.)
+" Appending a duplicate 'tab:' is okay; it just supersedes the first one.
 set listchars=eol:$,tab:>-,trail:~,extends:>,precedes:<,nbsp:~
-silent! set listchars+=tab:-->  " Needs patch 8.1.0759.
+silent! set listchars+=tab:-->
 
 
 " ---------- MISCELLANEOUS ----------

@@ -26,10 +26,10 @@
 " Sync with vimrc and gvimrc as necessary.
 
 
-" Enhance list mode.  Appending a duplicate 'tab:' is okay; it just
-" supersedes the first one.
+" Enhance list mode.  Patch 8.1.0759 required for 'tab:xyz'.
+" Appending a duplicate 'tab:' is okay; it just supersedes the first one.
 set listchars=eol:¶,tab:→⎯,trail:·,extends:→,precedes:←,nbsp:·
-silent! set listchars+=tab:⎯⎯→  " Needs patch 8.1.0759.
+silent! set listchars+=tab:⎯⎯→
 
 " Prefix soft-wrapped lines.
 set showbreak=→\    " Sentinel comment to protect the trailing space.

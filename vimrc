@@ -39,7 +39,7 @@ if has('packages')
 	packadd! matchit
 endif
 
-" Enable filetype detection, plugins, and indent files.  All 'packadd!'
+" Enable filetype detection, plugins, and indent files.  All :packadd!
 " commands that register plugins with filetype detection scripts must
 " precede this command, or the scripts won't be loaded [1].
 if has('autocmd')

@@ -163,6 +163,14 @@ is Vim 7.2 with the "tiny" feature set.  The most disruptive requirement
 is probably accommodating a [lack of `+eval`][14] (outside of plugins,
 which are not used at all in that case).
 
+-   Use `silent!` to run most commands that don't need `+eval`, do have
+    other requirements, and fail loudly if those are not met.
+
+    ```vim
+    silent! set formatoptions+=j        " Needs patch 7.3.541.
+    silent! set guifont=Consolas:h12    " Needs the font to be available
+    ```
+
 -   Establish portable defaults first, then override them later if
     desired.  This can be an adequate `+eval`-less replacement for
     `if`/`else` or `try`/`catch`, as long as the overriding code fails
@@ -176,14 +184,6 @@ which are not used at all in that case).
     ```vim
     set showbreak=>>>   " vimrc: Enable this by default.
     set showbreak=      " gvimrc: Clear it in the GUI.
-    ```
-
--   Use `silent!` to run most commands that don't need `+eval`, do have
-    other requirements, and fail loudly if those are not met.
-
-    ```vim
-    silent! set formatoptions+=j        " Needs patch 7.3.541.
-    silent! set guifont=Consolas:h12    " Needs the font to be available
     ```
 
 -   Use `if` to protect code that requires `+eval`; without `+eval`,

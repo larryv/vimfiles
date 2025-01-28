@@ -265,6 +265,6 @@ United States of America and distributed without any warranty.
 [21]: https://google.github.io/styleguide/vimscriptfull.xml#Strings
 [22]: https://google.github.io/styleguide/vimscriptfull.xml#Settings
 [23]: https://google.github.io/styleguide/vimscriptfull.xml#Functions
-[24]: https://vimhelp.org/eval.txt.html#has-patch
+[24]: https://vimhelp.org/builtin.txt.html#has-patch
 [25]: https://creativecommons.org/publicdomain/zero/1.0/
    "Creative Commons - CC0 1.0 Universal Public Domain Dedication"

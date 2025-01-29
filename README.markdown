@@ -171,7 +171,7 @@ which are not used at all in that case).
     other requirements, and fail loudly if those are not met.
 
     ```vim
-    silent! set formatoptions+=j        " Needs patch 7.3.541.
+    silent! autocmd!                    " Needs +autocmd.
     silent! set guifont=Consolas:h12    " Needs the font to be available
     ```
 
@@ -181,8 +181,8 @@ which are not used at all in that case).
     fails without side effects or is conditionalized in another way.
 
     ```vim
-    set listchars=tab:>-          " Works in 7.2.
-    silent set listchars=tab:-->  " Fails without patch 8.1.0795.
+    set formatoptions+=or           " Works in 7.2.
+    silent! set formatoptions+=j    " Needs patch 7.3.541.
     ```
 
     ```vim
@@ -195,10 +195,9 @@ which are not used at all in that case).
     condition.  Use `if 1` if `+eval` is the only requirement.
 
     ```vim
-    " Calling functions requires +eval.  We also need +autocmd, so check
-    " for that while I'm at it.
-    if has('autocmd')
-        autocmd EncodingChanged * call s:EncodingChangedHandler()
+    " 'syntax enable' sources files that need +eval.
+    if has('syntax') && &t_Co > 2
+        syntax enable
     endif
     ```
 
@@ -215,22 +214,48 @@ which are not used at all in that case).
     endif
     ```
 
--   Given two equivalent constructs, prefer the one that works with
-    older versions of Vim.  For example, `has('patch-8.1.0759')` is nice
-    but requires patch 7.4.237; do it [the long way][24] instead.
+-   Avoid constructs that require later versions of Vim.  For example:
 
-    ```vim
-    if v:version > 801 || (v:version == 801 && has('patch0759'))
-        let s:tmp .= ",tab:\xe2\x8e\xaf\xe2\x8e\xaf\xe2\x86\x92"
-    else
-    ```
+    -   Test for patches [the long way][24]:
+
+        ```vim
+        v:version > 704 || v:version == 704 && has('patch844')
+        ```
+
+        instead of using:
+
+        ```vim
+        has('patch-7.4.844')
+        ```
+
+        This form of `has()` requires [patch 7.4.237][25].
+
+    -   [Prevent String-to-Number coercion][26] by using:
+
+        ```vim
+        [g:foo] ==# [g:bar]
+        [g:baz] !=? [g:quux]
+        ```
+
+        instead of:
+
+        ```vim
+        g:foo is# g:bar
+        g:baz isnot? g:quux
+        ```
+
+        The `is#`, `is?`, `isnot#`, and `isnot?` operators are present
+        but undocumented in Vim 7.2 and 7.3; I don't know whether that
+        delay was intentional or just an oversight.  Either way, without
+        [patch 7.4.844][27] they are susceptible to interference from
+        `isident`, so best avoid them.
 
 
 ## Legal ##
 
 To the extent possible under law, [the author has dedicated all
 copyright and related and neighboring rights to this software to the
-public domain worldwide][25].  This software is published from the
+public domain worldwide][28].  This software is published from the
 United States of America and distributed without any warranty.
 
 
@@ -266,5 +291,8 @@ United States of America and distributed without any warranty.
 [22]: https://google.github.io/styleguide/vimscriptfull.xml#Settings
 [23]: https://google.github.io/styleguide/vimscriptfull.xml#Functions
 [24]: https://vimhelp.org/builtin.txt.html#has-patch
-[25]: https://creativecommons.org/publicdomain/zero/1.0/
+[25]: https://ftp.nluug.nl/pub/vim/patches/7.4/7.4.237
+[26]: https://vimhelp.org/eval.txt.html#E1037
+[27]: https://ftp.nluug.nl/pub/vim/patches/7.4/7.4.844
+[28]: https://creativecommons.org/publicdomain/zero/1.0/
    "Creative Commons - CC0 1.0 Universal Public Domain Dedication"

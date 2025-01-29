@@ -190,6 +190,20 @@ which are not used at all in that case).
     set showbreak=      " gvimrc: Clear it in the GUI.
     ```
 
+-   Use a single `:set` command to both:
+
+    1.  change an option in a way that might fail, and
+    2.  make other changes if and only if the first one succeeds.
+
+    This works because multi-argument `:set` fails fast.
+
+    ```vim
+    " Use 'tab:>-' by default but try to replace it
+    " with 'tab:-->' (which requires patch 8.1.0795).
+    set listchars=eol:$,tab:>-,trail:~
+    silent! set listchars+=tab:--> listchars-=tab:>-
+    ```
+
 -   Use `:if` to protect code that requires `+eval`; without `+eval`,
     everything between `:if` and `:endif` is ignored, including the
     condition.  Use `if 1` if `+eval` is the only requirement.

@@ -27,9 +27,8 @@
 
 
 " Enhance list mode.  Patch 8.1.0759 required for 'tab:xyz'.
-" Appending a duplicate 'tab:' is okay; it just supersedes the first one.
 set listchars=eol:¶,tab:→⎯,trail:·,extends:→,precedes:←,nbsp:·
-silent! set listchars+=tab:⎯⎯→
+silent! set listchars+=tab:⎯⎯→ listchars-=tab:→⎯
 
 " Prefix soft-wrapped lines.
 set showbreak=→\    " Sentinel comment to protect the trailing space.

@@ -121,6 +121,6 @@ endif
 
 " ---------- REFERENCES ----------
 "
-"  1. https://vimhelp.org/repeat.txt.html#%3Apackadd
-"  2. https://nvd.nist.gov/vuln/detail/CVE-2007-2438
-"  3. https://vimhelp.org/syntax.txt.html#xterm-color
+"  [1] https://vimhelp.org/repeat.txt.html#%3Apackadd
+"  [2] https://nvd.nist.gov/vuln/detail/CVE-2007-2438
+"  [3] https://vimhelp.org/syntax.txt.html#xterm-color

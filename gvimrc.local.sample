@@ -20,6 +20,12 @@
 
 silent! set guifont=Source\ Code\ Pro:h10
 
+" Reset modelines.  (Uncomment these commands ONLY if the GUI lacks
+" +eval and has patches 7.0.234 and 7.0.235.  No need to uncomment if
+" vimrc.local already resets these.  See vimrc and README.markdown.)
+"set modeline&
+"set modelines&
+
 " Prevent gvimrc from modifying listchars and showbreak to use non-ASCII
 " characters.  (Uncomment these commands if the characters look bad and
 " can't be fixed.  Conversely, to use the characters even if vimrc.local

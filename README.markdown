@@ -40,12 +40,16 @@ Error-checking is omitted for brevity.
     and Vim 9.1 with patches [327][2], [337][3], and [345][4] can also
     use [`$XDG_CONFIG_HOME/vim` or `$HOME/.config/vim`][5].
 
-    The rest of this document uses "`${vimfiles?}`" to stand in for the
-    chosen path.  [In example commands][6], it can be replaced with the
-    path directly or used as-is after setting the `vimfiles` variable to
-    the path.
+    The rest of this document uses "`$vimfiles`" to represent the chosen
+    path.  Unless noted otherwise, relative paths are under `$vimfiles`
+    (e.g., `vimrc` means `$vimfiles/vimrc`).  The easiest way to use the
+    [example commands][6] is to set the `vimfiles` shell variable first:
 
-2.  Download this repository to `${vimfiles?}`, which shouldn't exist yet.
+    ```sh
+    vimfiles=~/.vim
+    ```
+
+2.  Download this repository to `$vimfiles`, which shouldn't exist yet.
     If it does, delete it or move it somewhere else first.
 
     -   [Git 1.7.4.1][7] or later:
@@ -81,7 +85,7 @@ Error-checking is omitted for brevity.
     -   No Git: exercise for the reader, who will have to [do without
         `git`][12].
 
-    Alternatively, put it somewhere else and create `${vimfiles?}` as
+    Alternatively, put it somewhere else and create `$vimfiles` as
     a link to it.
 
     ```sh
@@ -91,11 +95,11 @@ Error-checking is omitted for brevity.
 
 3.  Take additional steps as required or desired.
 
-    -   Ensure `vimrc.local` and `gvimrc.local` exist in `${vimfiles?}`,
-        preventing the `:runtime` commands in `${vimfiles?}/vimrc` and
-        `${vimfiles?}/gvimrc` from sourcing identically named files in
-        other `runtimepath` directories.  (The chances that such files
-        are present is negligible but nonzero.)
+    -   Ensure `vimrc.local` and `gvimrc.local` exist in `$vimfiles`,
+        preventing the `:runtime` commands in `vimrc` and `gvimrc` from
+        sourcing identically named files in other `runtimepath`
+        directories.  (The chances that such files are present is
+        negligible but nonzero.)
 
         ```sh
         touch -- "${vimfiles?}/vimrc.local" "${vimfiles?}/gvimrc.local"
@@ -103,8 +107,8 @@ Error-checking is omitted for brevity.
 
     -   If using Vim 7.2 or earlier or 7.3 without [patch 1178][13],
         create `$HOME/.vimrc` and `$HOME/.gvimrc` as links to
-        `${vimfiles?}/vimrc` and `${vimfiles?}/gvimrc`, respectively,
-        so Vim has something to read.
+        `$vimfiles/vimrc` and `$vimfiles/gvimrc`, respectively, so Vim
+        has something to read.
 
         ```sh
         ln -s -- "${vimfiles?}/vimrc" ~/.vimrc
@@ -115,10 +119,9 @@ Error-checking is omitted for brevity.
 
         -   If `encoding` has a suitable value, use non-ASCII characters
             for certain options by sourcing one of the following files
-            from `${vimfiles?}/vimrc.local`, `${vimfiles?}/gvimrc.local`,
-            or both:
+            from `vimrc.local`, `gvimrc.local`, or both:
 
-            -   `${vimfiles?}/set_opts.utf-8.vim`
+            -   `set_opts.utf-8.vim`
             -   One day there might be another.  But not today.
 
             ```vim
@@ -126,9 +129,9 @@ Error-checking is omitted for brevity.
             ```
 
         -   If using Vim 7.1 or later or 7.0 with patches [234][15] and
-            [235][16], reset default modeline settings in
-            `${vimfiles?}/vimrc.local`.  Modelines are disabled by
-            default to mitigate [CVE-2007-2438][17].
+            [235][16], reset default modeline settings in `vimrc.local`.
+            Modelines are disabled by default to mitigate
+            [CVE-2007-2438][17].
 
             ```vim
             set modeline&
@@ -142,13 +145,13 @@ Error-checking is omitted for brevity.
 customizations described here are not tracked by Git.)
 
 To enact settings that shouldn't go into version control, create and
-populate `${vimfiles?}/vimrc.local` and `${vimfiles?}/gvimrc.local`.
-These are sourced at or near the ends of `${vimfiles?}/vimrc` and
-`${vimfiles?}/gvimrc`, so they can build on or override settings from
-those files.  (See `vimrc.local.sample` and `gvimrc.local.sample`.)
+populate `vimrc.local` and `gvimrc.local` in `$vimfiles`.  These are
+sourced at or near the ends of `vimrc` and `gvimrc`, so they can build
+on or override settings from those files.  (See `vimrc.local.sample` and
+`gvimrc.local.sample`.)
 
 To use packages that are not suitable for the repository, place them
-anywhere in `${vimfiles?}/pack` other than `versioned`.
+anywhere in `pack` other than `versioned`.
 
 
 ## Development ##

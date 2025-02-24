@@ -29,7 +29,9 @@ if 1
 endif
 
 " Reset modelines.  (Uncomment these commands ONLY if Vim lacks +eval
-" and has patches 7.0.234 and 7.0.235.  See vimrc and README.markdown.)
+" and has patches 7.0.234 and 7.0.235; to exclude the GUI, re-disable
+" these options in gvimrc.local.  See vimrc, gvimrc.local.sample, and
+" README.markdown.)
 "set modeline&
 "set modelines&
 
@@ -49,6 +51,8 @@ set printoptions+=paper:letter
 " +multi_byte, source the file corresponding to `encoding`.  Otherwise,
 " if the terminal uses a single-byte encoding, source a suitable option
 " from mbyte_opts/sb.  [Vim mishandles multibyte characters without
-" +multi_byte.]  See vimrc, mbyte_opts/auto.vim, mbyte_opts/mb/*.vim,
-" and mbyte_opts/sb/*.vim.)
+" +multi_byte.]  If the sourced file does not suit the GUI's encoding,
+" restore the original value of listchars in gvimrc.local.  See vimrc,
+" gvimrc.local.sample, mbyte_opts/auto.vim, mbyte_opts/mb/*.vim, and
+" mbyte_opts/sb/*.vim.)
 "runtime mbyte_opts/[ms]b/ENCODING.vim

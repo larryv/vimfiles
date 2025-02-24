@@ -20,6 +20,22 @@
 
 silent! set guifont=Source\ Code\ Pro:h10
 
+" Restore the original, ASCII-only listchars from vimrc.  Don't bother
+" restoring showbreak because gvimrc clears it after this.  (Uncomment
+" these commands ONLY if vimrc.local sources a file from mbyte_opts/mb
+" or mbyte_opts/sb that is meant for an encoding different from the one
+" in the GUI.  Depending on the encodings, this might not be necessary
+" before sourcing another mbyte_opts file, but it's good hygiene.  See
+" vimrc.local.sample.  Keep synced with vimrc.)
+"set listchars=eol:$,tab:>-,trail:~,extends:>,precedes:<,nbsp:~
+"silent! set listchars+=tab:--> listchars-=tab:>-
+
+" Re-disable modelines.  (Uncomment these commands ONLY if vimrc.local
+" resets these options and the GUI lacks patches 7.0.234 and 7.0.235.
+" See vimrc, vimrc.local.sample, and README.markdown.)
+"set nomodeline
+"set modelines=0
+
 " Reset modelines.  (Uncomment these commands ONLY if the GUI lacks
 " +eval and has patches 7.0.234 and 7.0.235.  No need to uncomment if
 " vimrc.local already resets these.  See vimrc and README.markdown.)

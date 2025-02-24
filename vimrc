@@ -86,7 +86,8 @@ set spell
 set spelllang=en_us
 
 " Enhance list mode.  Patch 8.1.0759 required for 'tab:xyz'.  (Keep
-" synced with files under mbyte_opts that directly modify listchars.)
+" synced with files under mbyte_opts that directly modify listchars,
+" as well as with gvimrc.local.sample.)
 set listchars=eol:$,tab:>-,trail:~,extends:>,precedes:<,nbsp:~
 silent! set listchars+=tab:--> listchars-=tab:>-
 
@@ -97,7 +98,9 @@ silent! set listchars+=tab:--> listchars-=tab:>-
 set nomodeline
 set modelines=0
 if v:version > 700 || (v:version == 700 && has('patch234') && has('patch235'))
-	" If Vim doesn't have +eval, reset these in vimrc.local.
+	" If Vim doesn't have +eval, reset these in vimrc.local, but if
+	" the GUI version is unpatched, re-disable them in gvimrc.local.
+	" See vimrc.local.sample and gvimrc.local.sample.
 	set modeline&
 	set modelines&
 endif
@@ -113,7 +116,8 @@ runtime vimrc.local
 
 " Enable syntax highlighting if colors are available.  Do this down here
 " to let vimrc.local make tweaks first, if necessary [3].  Let gvimrc
-" and gvimrc.local handle the GUI.
+" and gvimrc.local handle the GUI.  (If the aforementioned tweaks become
+" necessary, ensure that they aren't inadvertently applied to the GUI.)
 if !has('gui_running') && has('syntax') && &t_Co > 2
 	syntax enable
 endif
@@ -123,8 +127,9 @@ endif
 " +iconv/dyn [5] for conversion.  Do this down here so that vimrc.local
 " can disable it, if desired.  Let gvimrc and gvimrc.local handle the
 " GUI.  (If Vim does not have +eval, source an appropriate file from
-" mbyte_opts/mb or mbyte_opts/sb in vimrc.local.  See
-" vimrc.local.sample.)
+" mbyte_opts/mb or mbyte_opts/sb in vimrc.local.  If the sourced file
+" does not suit the GUI's encoding, restore the original listchars in
+" gvimrc.local.  See vimrc.local.sample and gvimrc.local.sample.)
 if !has('gui_running') && (!exists('g:mbyte_opts') || g:mbyte_opts)
 	runtime mbyte_opts/auto.vim
 endif

@@ -157,6 +157,10 @@ Error-checking is omitted for brevity.
             set modelines&
             ```
 
+        To apply any of these commands to the terminal version of Vim
+        but not to the GUI, add them to `vimrc.local`, then add commands
+        to `gvimrc.local` that undo them.  See `gvimrc.local.sample`.
+
 
 ## Customization ##
 

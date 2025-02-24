@@ -19,6 +19,8 @@
 
 
 " https://ethanschoonover.com/solarized/
+" Do this locally because (I believe) I have to configure the terminal's
+" colors correctly for this to look right.
 if 1
 	try
 		colorscheme solarized
@@ -26,9 +28,8 @@ if 1
 	endtry
 endif
 
-" Reset modelines.  (Uncomment these ONLY if Vim is patched against
-" CVE-2007-2438 but lacks +eval; otherwise vimrc handles this.  See
-" README.markdown for details.)
+" Reset modelines.  (Uncomment these commands ONLY if Vim lacks +eval
+" and has patches 7.0.234 and 7.0.235.  See vimrc and README.markdown.)
 "set modeline&
 "set modelines&
 

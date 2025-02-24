@@ -95,7 +95,7 @@ silent! set listchars+=tab:-->  " Needs patch 8.1.0759.
 set nomodeline
 set modelines=0
 if v:version > 700 || (v:version == 700 && has('patch234') && has('patch235'))
-	" If +eval is unavailable, reset these in vimrc.local.
+	" If Vim doesn't have +eval, reset these in vimrc.local.
 	set modeline&
 	set modelines&
 endif
@@ -110,8 +110,8 @@ runtime vimrc.local
 " ---------- EPILOGUE ----------
 
 " Enable syntax highlighting if colors are available.  Do this down here
-" to let vimrc.local make tweaks first, if necessary [3].  (The GUI is
-" handled by gvimrc to allow gvimrc.local to make its own tweaks.)
+" to let vimrc.local make tweaks first, if necessary [3].  Let gvimrc
+" and gvimrc.local handle the GUI.
 if !has('gui_running') && has('syntax') && &t_Co > 2
 	syntax enable
 endif

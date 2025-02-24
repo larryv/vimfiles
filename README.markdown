@@ -93,13 +93,14 @@ Error-checking is omitted for brevity.
     ln -s /somewhere/else "${vimfiles?}"
     ```
 
-3.  Take additional steps as required or desired.
+3.  Take additional steps as required or desired.  For examples and more
+    details, see `vimrc.local.sample` and `gvimrc.local.sample`.
 
-    -   Ensure `vimrc.local` and `gvimrc.local` exist in `$vimfiles`,
-        preventing the `:runtime` commands in `vimrc` and `gvimrc` from
-        sourcing identically named files in other `runtimepath`
-        directories.  (The chances that such files are present is
-        negligible but nonzero.)
+    -   Ensure that `vimrc.local` and `gvimrc.local` files exist in
+        `$vimfiles`, even if they are empty.  This prevents `:runtime`
+        commands in `vimrc` and `gvimrc` from ever sourcing identically
+        named files in subsequent `runtimepath` directories (unlikely
+        but still possible).
 
         ```sh
         touch -- "${vimfiles?}/vimrc.local" "${vimfiles?}/gvimrc.local"
@@ -107,8 +108,8 @@ Error-checking is omitted for brevity.
 
     -   If using Vim 7.2 or earlier or 7.3 without [patch 1178][13],
         create `$HOME/.vimrc` and `$HOME/.gvimrc` as links to
-        `$vimfiles/vimrc` and `$vimfiles/gvimrc`, respectively, so Vim
-        has something to read.
+        `$vimfiles/vimrc` and `$vimfiles/gvimrc`, respectively, so that
+        Vim has something to read.
 
         ```sh
         ln -s -- "${vimfiles?}/vimrc" ~/.vimrc
@@ -117,9 +118,9 @@ Error-checking is omitted for brevity.
 
     -   If using [an `+eval`-less Vim][14]:
 
-        -   If `encoding` has a suitable value, use non-ASCII characters
-            for certain options by sourcing one of the following files
-            from `vimrc.local`, `gvimrc.local`, or both:
+        -   If `encoding` has a suitable value, add non-ASCII characters
+            to `listchars` and `showbreak` by sourcing one of the
+            following files from `vimrc.local`, `gvimrc.local`, or both:
 
             -   `set_opts.utf-8.vim`
             -   One day there might be another.  But not today.
@@ -129,8 +130,8 @@ Error-checking is omitted for brevity.
             ```
 
         -   If using Vim 7.1 or later or 7.0 with patches [234][15] and
-            [235][16], reset default modeline settings in `vimrc.local`.
-            Modelines are disabled by default to mitigate
+            [235][16], reset `modeline` and `modelines` in `vimrc.local`
+            or `gvimrc.local`.  They are disabled by default to mitigate
             [CVE-2007-2438][17].
 
             ```vim
@@ -174,10 +175,10 @@ which are not used at all in that case).
     silent! set guifont=Consolas:h12    " Needs the font to be available
     ```
 
--   Establish portable defaults first, then override them later if
-    desired.  This can be an adequate `+eval`-less replacement for
-    `if`/`else` or `try`/`catch`, as long as the overriding code fails
-    without side effects or is conditionalized in another way.
+-   Establish portable defaults first, then augment or override them
+    later if desired.  This can be an adequate `+eval`-less replacement
+    for `if`/`else` or `try`/`catch`, as long as the overriding code
+    fails without side effects or is conditionalized in another way.
 
     ```vim
     set listchars=tab:>-          " Works in 7.2.
@@ -191,7 +192,7 @@ which are not used at all in that case).
 
 -   Use `if` to protect code that requires `+eval`; without `+eval`,
     everything between `if` and `endif` is ignored, including the
-    condition.  Use `if 1` unless there are more conditions to impose.
+    condition.  Use `if 1` if `+eval` is the only requirement.
 
     ```vim
     " Calling functions requires +eval.  We also need +autocmd, so check
@@ -207,8 +208,8 @@ which are not used at all in that case).
 
     ```vim
     set softtabstop=4
-    if v:version > 703 || (v:version == 703 && has('patch693'))
-        " This throws an error if -1 is invalid but sets 'softtabstop'
+    if v:version > 703 || v:version == 703 && has('patch693')
+        " If -1 is invalid, this throws an error but sets 'softtabstop'
         " to 0 without warning.  Rude!
         set softtabstop=-1
     endif

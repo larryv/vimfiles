@@ -15,17 +15,15 @@
 " <https://creativecommons.org/publicdomain/zero/1.0/>.
 
 
-" Use the following Unicode (UTF-8) characters for certain options:
+" Modify listchars and showbreak to use these UTF-8 characters:
 "
-"    	¶ U+00B6 PILCROW SIGN (0xC2 0xB6)
-"    	· U+00B7 MIDDLE DOT (0xC2 0xB7)
-"    	← U+2190 LEFTWARDS ARROW (0xE2 0x86 0x90)
-"    	→ U+2192 RIGHTWARDS ARROW (0xE2 0x86 0x92)
-"    	⎯ U+23AF HORIZONTAL LINE EXTENSION (0xE2 0x8E 0xAF)
+" 	¶ U+00B6 PILCROW SIGN (0xC2 0xB6)
+" 	· U+00B7 MIDDLE DOT (0xC2 0xB7)
+" 	← U+2190 LEFTWARDS ARROW (0xE2 0x86 0x90)
+" 	→ U+2192 RIGHTWARDS ARROW (0xE2 0x86 0x92)
+" 	⎯ U+23AF HORIZONTAL LINE EXTENSION (0xE2 0x8E 0xAF)
 "
-" Intended to be sourced by vimrc.local and gvimrc.local; for details,
-" see vimrc.local.sample and gvimrc.local.sample.  Sync with vimrc and
-" gvimrc as necessary.
+" Sync with vimrc and gvimrc as necessary.
 
 
 " Enhance list mode.  Appending a duplicate 'tab:' is okay; it just

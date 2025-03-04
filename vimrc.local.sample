@@ -36,10 +36,14 @@ endif
 " When I use paper, I use patriotic American paper.
 set printoptions+=paper:letter
 
-" Use non-ASCII characters for certain options.  Do this locally (and
-" separately for the GUI) because the characters don't look great in
-" some fonts/terminals/whatever.  (If +eval is unavailable, comment out
-" the 'if' and 'endif' lines.)
-if !has('gui_running') && &encoding ==? 'utf-8'
-	runtime set_opts.utf-8.vim
-endif
+" Prevent vimrc from modifying listchars and showbreak to use non-ASCII
+" characters.  (Uncomment these commands if the characters look bad and
+" can't be fixed; to continue using the characters in the GUI, assign
+" a truthy value in gvimrc.local.  See vimrc and gvimrc.local.sample.)
+"if 1
+"	let g:mbyte_opts = 0
+"endif
+
+" Add non-ASCII characters to listchars and showbreak.  (Uncomment this
+" command ONLY if Vim does not have +eval.  See vimrc.)
+"runtime set_opts.utf-8.vim

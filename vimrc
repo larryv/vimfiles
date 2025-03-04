@@ -118,6 +118,17 @@ if !has('gui_running') && has('syntax') && &t_Co > 2
 	syntax enable
 endif
 
+" Add non-ASCII characters to listchars and showbreak based on
+" `encoding`.  Do this down here so that vimrc.local can disable it, if
+" desired.  Let gvimrc and gvimrc.local handle the GUI.  (If Vim does
+" not have +eval, source set_opts.utf-8.vim in vimrc.local.  See
+" vimrc.local.sample.)
+if !has('gui_running') && (!exists('g:mbyte_opts') || g:mbyte_opts)
+	if &encoding ==? 'utf-8'
+		runtime set_opts.utf-8.vim
+	endif
+endif
+
 
 " ---------- REFERENCES ----------
 "

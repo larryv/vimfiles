@@ -116,6 +116,17 @@ Error-checking is omitted for brevity.
         ln -s -- "${vimfiles?}/gvimrc" ~/.gvimrc
         ```
 
+    -   If the non-ASCII characters in `listchars` and `showbreak` look
+        bad for some underlying reason that can't be addressed, stick to
+        ASCII by assigning `g:mbyte_opts` a falsy value in `vimrc.local`
+        or `gvimrc.local`.  To opt out of non-ASCII option values in the
+        terminal but not the GUI, assign a falsy value in `vimrc.local`
+        and a truthy one in `gvimrc.local`.
+
+        ```vim
+        let g:mbyte_opts = 0
+        ```
+
     -   If using [an `+eval`-less Vim][14]:
 
         -   If `encoding` has a suitable value, add non-ASCII characters

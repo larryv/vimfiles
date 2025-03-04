@@ -20,9 +20,15 @@
 
 silent! set guifont=Source\ Code\ Pro:h10
 
-" Use non-ASCII characters for certain options.  Do this locally because
-" the characters don't look great in some fonts/terminals/whatever.  (If
-" +eval is unavailable, comment out the 'if' and 'endif' lines.)
-if &encoding ==? 'utf-8'
-	runtime set_opts.utf-8.vim
-endif
+" Prevent gvimrc from modifying listchars and showbreak to use non-ASCII
+" characters.  (Uncomment these commands if the characters look bad and
+" can't be fixed.  Conversely, to use the characters even if vimrc.local
+" disabled them, uncomment the commands and assign a truthy value.  See
+" gvimrc and vimrc.local.sample.)
+"if 1
+"	let g:mbyte_opts = 0
+"endif
+
+" Add non-ASCII characters to listchars and showbreak.  (Uncomment this
+" command ONLY if Vim does not have +eval.  See gvimrc.)
+"runtime set_opts.utf-8.vim

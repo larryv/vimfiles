@@ -25,15 +25,25 @@ set guioptions+=g
 " Apply local settings, if any.
 runtime gvimrc.local
 
-" Show absolute line numbers in the left gutter instead of prefixing
-" soft-wrapped lines.  Do this down here so that gvimrc.local can share
-" set_opts.utf-8.vim with vimrc.local instead of doing its own thing
-" just to avoid setting showbreak again.
-set number
-set showbreak=
-
 " Enable syntax highlighting.  Do this down here to let gvimrc.local
 " make tweaks first, if necessary.
 if has('syntax')
 	syntax enable
 endif
+
+" Add non-ASCII characters to listchars and showbreak based on
+" `encoding`.  Do this down here so that vimrc.local or gvimrc.local can
+" disable it, if desired.  (If Vim does not have +eval, source
+" set_opts.utf-8.vim in gvimrc.local.  See gvimrc.local.sample.)
+if !exists('g:mbyte_opts') || g:mbyte_opts
+	if &encoding ==? 'utf-8'
+		runtime set_opts.utf-8.vim
+	endif
+endif
+
+" Show absolute line numbers in the left gutter instead of prefixing
+" soft-wrapped lines.  Do this down here so that this file can share
+" set_opts.utf-8.vim with vimrc instead of doing its own thing just to
+" avoid setting showbreak again.
+set number
+set showbreak=

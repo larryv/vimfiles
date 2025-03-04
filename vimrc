@@ -66,9 +66,8 @@ silent! set formatoptions+=p
 
 " ---------- VIEWING ----------
 
-" Soft-wrap only at certain characters, and prefix wrapped lines.  (Keep
-" synced with files under mbyte_opts that directly modify showbreak.)
-set linebreak
+" Prefix soft-wrapped lines.  (Keep synced with files under mbyte_opts
+" that directly modify showbreak.)
 set showbreak=->\   " Sentinel comment to protect the trailing space.
 
 " Enable ruler and show in-progress Normal-mode commands.

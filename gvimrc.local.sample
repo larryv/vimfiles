@@ -35,6 +35,11 @@ silent! set guifont=Source\ Code\ Pro:h10
 "	let g:mbyte_opts = 0
 "endif
 
-" Add non-ASCII characters to listchars and showbreak.  (Uncomment this
-" command ONLY if Vim does not have +eval.  See gvimrc.)
-"runtime set_opts.utf-8.vim
+" Add non-ASCII characters to listchars and (if using UTF-8) showbreak.
+" (Uncomment this command ONLY if Vim does not have +eval.  If Vim has
+" +multi_byte, source the file corresponding to `encoding`.  Otherwise,
+" if the terminal uses a single-byte encoding, source a suitable option
+" from mbyte_opts/sb.  [Vim mishandles multibyte characters without
+" +multi_byte.]  See gvimrc, mbyte_opts/auto.vim, mbyte_opts/mb/*.vim,
+" and mbyte_opts/sb/*.vim.)
+"runtime mbyte_opts/[ms]b/ENCODING.vim

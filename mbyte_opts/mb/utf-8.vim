@@ -1,5 +1,5 @@
-" set_opts.utf-8.vim
-" ------------------
+" mbyte_opts/mb/utf-8.vim
+" -----------------------
 "
 " SPDX-License-Identifier: CC0-1.0
 "
@@ -32,3 +32,7 @@ silent! set listchars+=tab:⎯⎯→ listchars-=tab:→⎯
 
 " Prefix soft-wrapped lines.
 set showbreak=→\    " Sentinel comment to protect the trailing space.
+
+
+" Affects writes only.  Read with ':edit ++enc=utf-8' if necessary.
+" vim: set fileencoding=utf-8:

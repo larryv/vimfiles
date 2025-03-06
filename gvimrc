@@ -31,19 +31,25 @@ if has('syntax')
 	syntax enable
 endif
 
-" Add non-ASCII characters to listchars and showbreak based on
-" `encoding`.  Do this down here so that vimrc.local or gvimrc.local can
-" disable it, if desired.  (If Vim does not have +eval, source
-" set_opts.utf-8.vim in gvimrc.local.  See gvimrc.local.sample.)
+" Add non-ASCII characters to listchars and (if using UTF-8) showbreak,
+" based on `encoding` or the runtime locale.  May require +iconv [1] or
+" +iconv/dyn [2] for conversion.  Do this down here so that vimrc.local
+" or gvimrc.local can disable it, if desired.  (If Vim does not have
+" +eval, source an appropriate file from mbyte_opts/mb or mbyte_opts/sb
+" in gvimrc.local.  See gvimrc.local.sample.)
 if !exists('g:mbyte_opts') || g:mbyte_opts
-	if &encoding ==? 'utf-8'
-		runtime set_opts.utf-8.vim
-	endif
+	runtime mbyte_opts/auto.vim
 endif
 
 " Show absolute line numbers in the left gutter instead of prefixing
 " soft-wrapped lines.  Do this down here so that this file can share
-" set_opts.utf-8.vim with vimrc instead of doing its own thing just to
-" avoid setting showbreak again.
+" mbyte_opts with vimrc instead of doing its own thing just to avoid
+" setting showbreak again.
 set number
 set showbreak=
+
+
+" ---------- REFERENCES ----------
+"
+"  [1] https://vimhelp.org/mbyte.txt.html#mbyte-conversion
+"  [2] https://vimhelp.org/mbyte.txt.html#iconv-dynamic

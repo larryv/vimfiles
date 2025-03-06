@@ -129,15 +129,22 @@ Error-checking is omitted for brevity.
 
     -   If using [an `+eval`-less Vim][14]:
 
-        -   If `encoding` has a suitable value, add non-ASCII characters
-            to `listchars` and `showbreak` by sourcing one of the
-            following files from `vimrc.local`, `gvimrc.local`, or both:
-
-            -   `set_opts.utf-8.vim`
-            -   One day there might be another.  But not today.
+        -   Add non-ASCII characters to `listchars` and (if using UTF-8)
+            `showbreak` by sourcing a suitable file in `vimrc.local` or
+            `gvimrc.local`.  If Vim has `+multi_byte`, source the file
+            in `mbyte_opts/mb` (multibyte encodings) or `mbyte_opts/sb`
+            (single-byte encodings) that corresponds to `encoding`:
 
             ```vim
-            runtime set_opts.utf-8.vim
+            runtime mbyte_opts/mb/utf-8.vim
+            ```
+
+            Otherwise, if the terminal uses a single-byte encoding, try
+            to source a suitable file from `mbyte_opts/sb`.  (Vim can't
+            handle multibyte characters properly without `+multi_byte`.)
+
+            ```vim
+            runtime mbyte_opts/sb/iso8859-1.vim
             ```
 
         -   If using Vim 7.1 or later or 7.0 with patches [234][15] and

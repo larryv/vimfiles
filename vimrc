@@ -67,7 +67,7 @@ silent! set formatoptions+=p
 " ---------- VIEWING ----------
 
 " Soft-wrap only at certain characters, and prefix wrapped lines.  (Keep
-" synced with set_opts.utf-8.vim.)
+" synced with files under mbyte_opts that directly modify showbreak.)
 set linebreak
 set showbreak=->\   " Sentinel comment to protect the trailing space.
 
@@ -86,7 +86,7 @@ set spell
 set spelllang=en_us
 
 " Enhance list mode.  Patch 8.1.0759 required for 'tab:xyz'.  (Keep
-" synced with set_opts.utf-8.vim.)
+" synced with files under mbyte_opts that directly modify listchars.)
 set listchars=eol:$,tab:>-,trail:~,extends:>,precedes:<,nbsp:~
 silent! set listchars+=tab:--> listchars-=tab:>-
 
@@ -118,15 +118,15 @@ if !has('gui_running') && has('syntax') && &t_Co > 2
 	syntax enable
 endif
 
-" Add non-ASCII characters to listchars and showbreak based on
-" `encoding`.  Do this down here so that vimrc.local can disable it, if
-" desired.  Let gvimrc and gvimrc.local handle the GUI.  (If Vim does
-" not have +eval, source set_opts.utf-8.vim in vimrc.local.  See
+" Add non-ASCII characters to listchars and (if using UTF-8) showbreak,
+" based on `encoding` or the runtime locale.  May require +iconv [4] or
+" +iconv/dyn [5] for conversion.  Do this down here so that vimrc.local
+" can disable it, if desired.  Let gvimrc and gvimrc.local handle the
+" GUI.  (If Vim does not have +eval, source an appropriate file from
+" mbyte_opts/mb or mbyte_opts/sb in vimrc.local.  See
 " vimrc.local.sample.)
 if !has('gui_running') && (!exists('g:mbyte_opts') || g:mbyte_opts)
-	if &encoding ==? 'utf-8'
-		runtime set_opts.utf-8.vim
-	endif
+	runtime mbyte_opts/auto.vim
 endif
 
 
@@ -135,3 +135,5 @@ endif
 "  [1] https://vimhelp.org/repeat.txt.html#%3Apackadd
 "  [2] https://nvd.nist.gov/vuln/detail/CVE-2007-2438
 "  [3] https://vimhelp.org/syntax.txt.html#xterm-color
+"  [4] https://vimhelp.org/mbyte.txt.html#mbyte-conversion
+"  [5] https://vimhelp.org/mbyte.txt.html#iconv-dynamic

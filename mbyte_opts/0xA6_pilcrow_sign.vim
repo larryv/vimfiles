@@ -15,20 +15,8 @@
 " <https://creativecommons.org/publicdomain/zero/1.0/>.
 
 
-" Modify listchars to use this 8-bit character:
-"
-" 	¦ 0xA6 PILCROW SIGN
-"
-" which is part of these encodings:
-"
-" 	Mac OS Central European
-" 	Mac OS Croatian
-" 	Mac OS Cyrillic
-" 	Mac OS Icelandic
-" 	Mac OS Roman
-" 	Mac OS Romanian
-" 	Mac OS Turkish
-" 	Mac OS Ukrainian
+" Modify listchars to use octet 0xA6/0246/166, which some encodings map
+" to Unicode code point U+00B6 PILCROW SIGN.
 "
 " To maximize cross-encoding compatibility, do not add other non-ASCII
 " characters to this file.

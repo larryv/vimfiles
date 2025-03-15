@@ -15,13 +15,8 @@
 " <https://creativecommons.org/publicdomain/zero/1.0/>.
 
 
-" Modify listchars to use this 8-bit character:
-"
-" 	´ 0xB4 MIDDLE DOT
-"
-" which is part of this encoding:
-"
-" 	NeXT/NeXTSTEP character set
+" Modify listchars to use octet 0xB4/0264/180, which some encodings map
+" to Unicode code point U+00B7 MIDDLE DOT.
 "
 " To maximize cross-encoding compatibility, do not add other non-ASCII
 " characters to this file.

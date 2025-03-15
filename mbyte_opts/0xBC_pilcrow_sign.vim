@@ -15,13 +15,8 @@
 " <https://creativecommons.org/publicdomain/zero/1.0/>.
 
 
-" Modify listchars to use this 8-bit character:
-"
-" 	¼ 0xBC PILCROW SIGN
-"
-" which is part of this encoding:
-"
-" 	Atari ST character set
+" Modify listchars to use octet 0xBC/0274/188, which some encodings map
+" to Unicode code point U+00B6 PILCROW SIGN.
 "
 " To maximize cross-encoding compatibility, do not add other non-ASCII
 " characters to this file.

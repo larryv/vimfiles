@@ -15,13 +15,8 @@
 " <https://creativecommons.org/publicdomain/zero/1.0/>.
 
 
-" Modify listchars to use this 8-bit character:
-"
-" 	ò 0xF2 MIDDLE DOT
-"
-" which is part of this encoding:
-"
-" 	HP Roman-8
+" Modify listchars to use octet 0xF2/0362/242, which some encodings map
+" to Unicode code point U+00B7 MIDDLE DOT.
 "
 " To maximize cross-encoding compatibility, do not add other non-ASCII
 " characters to this file.

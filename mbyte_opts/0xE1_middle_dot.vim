@@ -15,17 +15,8 @@
 " <https://creativecommons.org/publicdomain/zero/1.0/>.
 
 
-" Modify listchars to use this 8-bit character:
-"
-" 	á 0xE1 MIDDLE DOT
-"
-" which is part of these encodings:
-"
-" 	Mac OS Croatian
-" 	Mac OS Icelandic
-" 	Mac OS Roman
-" 	Mac OS Romanian
-" 	Mac OS Turkish
+" Modify listchars to use octet 0xE1/0341/225, which some encodings map
+" to Unicode code point U+00B7 MIDDLE DOT.
 "
 " To maximize cross-encoding compatibility, do not add other non-ASCII
 " characters to this file.

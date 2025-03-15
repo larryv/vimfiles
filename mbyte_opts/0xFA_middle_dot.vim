@@ -15,27 +15,8 @@
 " <https://creativecommons.org/publicdomain/zero/1.0/>.
 
 
-" Modify listchars to use this 8-bit character:
-"
-" 	ú 0xFA MIDDLE DOT
-"
-" which is part of these encodings:
-"
-" 	Atari ST character set
-" 	IBM/OEM code page 437 (United States)
-" 	IBM/OEM code page 737 (Greek)
-" 	IBM/OEM code page 775 (Baltic Rim)
-" 	IBM/OEM code page 850 (Western European)
-" 	IBM code page 856 (Hebrew)
-" 	IBM/OEM code page 857 (Turkish)
-" 	IBM/OEM code page 858 (Western European with euro sign)
-" 	IBM/OEM code page 860 (Portuguese)
-" 	IBM/OEM code page 861 (Icelandic)
-" 	IBM/OEM code page 862 (Hebrew)
-" 	IBM/OEM code page 863 (Canadian French)
-" 	IBM/OEM code page 865 (Nordic)
-" 	IBM/OEM code page 866 (Russian Cyrillic)
-" 	IBM code page 1131 (Belarusian Cyrillic)
+" Modify listchars to use octet 0xFA/0372/250, which some encodings map
+" to Unicode code point U+00B7 MIDDLE DOT.
 "
 " To maximize cross-encoding compatibility, do not add other non-ASCII
 " characters to this file.

@@ -15,18 +15,8 @@
 " <https://creativecommons.org/publicdomain/zero/1.0/>.
 
 
-" Modify listchars to use this 8-bit character:
-"
-" 	ô 0xF4 PILCROW SIGN
-"
-" which is part of these encodings:
-"
-" 	HP Roman-8
-" 	IBM/OEM code page 775 (Baltic Rim)
-" 	IBM/OEM code page 850 (Western European)
-" 	IBM code page 856 (Hebrew)
-" 	IBM/OEM code page 857 (Turkish)
-" 	IBM/OEM code page 858 (Western European with euro sign)
+" Modify listchars to use octet 0xF4/0364/244, which some encodings map
+" to Unicode code point U+00B6 PILCROW SIGN.
 "
 " To maximize cross-encoding compatibility, do not add other non-ASCII
 " characters to this file.

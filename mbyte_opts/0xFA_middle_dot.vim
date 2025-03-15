@@ -16,7 +16,8 @@
 
 
 " Modify listchars to use octet 0xFA/0372/250, which some encodings map
-" to Unicode code point U+00B7 MIDDLE DOT.
+" to Unicode code point U+00B7 MIDDLE DOT.  (A few encodings map it to
+" U+2022 BULLET [*] instead.)
 "
 " To maximize cross-encoding compatibility, do not add other non-ASCII
 " characters to this file.
@@ -26,6 +27,11 @@
 
 set listchars+=trail:ú listchars-=trail:~
 set listchars+=nbsp:ú listchars-=nbsp:~
+
+
+" ---------- REFERENCES ----------
+"
+"  [*] https://haible.de/bruno/charsets/conversion-tables/CP856.html
 
 
 " Affects writes only.  Read with ':edit ++enc=cp850' if necessary.

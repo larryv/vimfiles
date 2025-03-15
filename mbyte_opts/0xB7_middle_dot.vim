@@ -16,7 +16,8 @@
 
 
 " Modify listchars to use octet 0xB7/0267/183, which some encodings map
-" to Unicode code point U+00B7 MIDDLE DOT.
+" to Unicode code point U+00B7 MIDDLE DOT.  (A few encodings map it to
+" U+0387 GREEK ANO TELEIA [1] or U+2022 BULLET [2] instead.)
 "
 " To maximize cross-encoding compatibility, do not add other non-ASCII
 " characters to this file.
@@ -26,6 +27,12 @@
 
 set listchars+=trail:· listchars-=trail:~
 set listchars+=nbsp:· listchars-=nbsp:~
+
+
+" ---------- REFERENCES ----------
+"
+"  [1] https://haible.de/bruno/charsets/conversion-tables/ISO-8859-7.html
+"  [2] https://haible.de/bruno/charsets/conversion-tables/ISO-8859-8.html
 
 
 " Affects writes only.  Read with ':edit ++enc=latin1' if necessary.
